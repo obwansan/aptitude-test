@@ -5,7 +5,7 @@
 Clone this Repo
 cd into the api/public folder
 Run: `php -S localhost:8080`
-Install the database.sql file in /api/db into your vagrant box
+Install the aptitude-test.sql file in /api/db into your vagrant box
 
 
 ### Routes

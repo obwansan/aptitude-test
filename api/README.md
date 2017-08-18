@@ -16,6 +16,10 @@ POST - Create new user.
 `{'email':'example@email.com', 'name':'Fred Smith'}`
 Returns user object.
 
+GET - Get all registered users.
+No request data
+Returns array of user objects.
+
 GET - Find registered user.
 Send users email as a GET parameter using the key of `email`.
 Returns user object.

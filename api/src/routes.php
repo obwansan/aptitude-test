@@ -50,28 +50,40 @@ $app->get('/user', function ($request, $response, $args) {
     $email = $request->getQueryParam('email');
 
     if (empty($email)) {
-        $data['message'] = 'Invalid parameter, please provide an email';
-        return $response->withJson($data, 400);
-    }
+        try {
+            $query = "SELECT `id`, `email`, `name`, `dateCreated` from `user` ORDER BY `dateCreated` DESC;";
+            $query = $this->db->prepare($query);
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
-    try {
-        $query = "SELECT `id` from `user` WHERE `email` = :email";
-        $query = $this->db->prepare($query);
-        $query->bindParam(':email', $email);
-        $query->execute();
-        $result = $query->fetch(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            $data['message'] = $e->getMessage();
+            return $response->withJson($data, 500);
+        }
 
-    } catch(Exception $e) {
-        $data['message'] = $e->getMessage();
-        return $response->withJson($data, 500);
+        $data['message'] = 'Users found.';
+
+    } else {
+
+        try {
+            $query = "SELECT `id` from `user` WHERE `email` = :email";
+            $query = $this->db->prepare($query);
+            $query->bindParam(':email', $email);
+            $query->execute();
+            $result = $query->fetch(PDO::FETCH_ASSOC);
+
+        } catch (Exception $e) {
+            $data['message'] = $e->getMessage();
+            return $response->withJson($data, 500);
+        }
+
+        $data['message'] = 'User not registered.';
+        if ($result) {
+            $data['message'] = 'User found.';
+        }
     }
 
     $data['success'] = true;
-
-    $data['message'] = 'User not registered.';
-    if ($result) {
-        $data['message'] = 'User found.';
-    }
     $data['data'] = $result;
     return $response->withJson($data);
 

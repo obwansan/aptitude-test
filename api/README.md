@@ -12,6 +12,7 @@
 - generate a new token from the url provided
 
 ### Routes
+- for local development use localhost:8080/whatYouRequire as your ajax URL
 
 **/user**
 

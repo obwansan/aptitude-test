@@ -44,6 +44,33 @@ $app->post('/user', function ($request, $response, $args) {
     return $response->withJson($data);
 });
 
+$app->put('/user', function ($request, $response, $args) {
+    $data = ['success' => false, 'message' => 'An unexpected error occured.', 'data' => []];
+    $user = $request->getParsedBody();
+
+    if (empty($user['email']) || empty($user['name']) || empty($user['id'])) {
+        $data['message'] = 'Invalid parameters, please provide both email and name.';
+        $data['data'] = $user;
+        return $response->withJson($data, 400);
+    }
+
+    try {
+        $query = "UPDATE `user` SET `email` = :email, `name` = :name WHERE `id` = :id;";
+        $query = $this->db->prepare($query);
+        $query->bindParam(':email', $user['email']);
+        $query->bindParam(':name', $user['name']);
+        $query->bindParam(':id', $user['id']);
+        $query->execute();
+    } catch(Exception $e) {
+        $data['message'] = $e->getMessage();
+        return $response->withJson($data, 500);
+    }
+
+    $data['success'] = true;
+    $data['message'] = 'User updated.';
+    return $response->withJson($data);
+});
+
 $app->get('/user', function ($request, $response, $args) {
     $data = ['success' => false, 'message' => 'An unexpected error occured.', 'data' => []];
 

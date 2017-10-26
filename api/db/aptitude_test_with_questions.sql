@@ -62,7 +62,7 @@ VALUES
 	(18,'The instructions in B are _____','Does it have fur?','Add to fish list','Does it have feathers?','Does it have scales?','Can it swim',3),
 	(19,'Mario has a better grade in a class than Luigi. Bowser has a worse grade than Mario. Which of the following must be true?','Bowser has a worse grade than Luigi','Bowser and Luigi have equally good grades','It is impossible to tell from this information whether Luigi or Bowser has a better grade','Luigi has a better grade than Bowswer','Bowser has a better grade than Luigi',3),
 	(20,'If A < B and B + C = 10, then which of the following must be true? (A, B & C are all positive integers)','A < 10','A + B = 10','A > C','A = C','B < C',1),
-	(21,'It takes 5 window-washers 7 hours to wash one office building.  How many hours would it take if only 4 window-washers had to wash the building?','11','10 1/2','8 ¾','14','9',3),
+	(21,'It takes 5 window-washers 7 hours to wash one office building.  How many hours would it take if only 4 window-washers had to wash the building?','11','10 1/2','8 3/4','14','9',3),
 	(22,'Making enough stew to feed 4 people requires 9 carrots. You want to make enough stew to feed 16 people. How many carrots do you need?','40 carrots','81 carrots','36 carrots','18 carrots','45 carrots',3),
 	(23,'Tanya is older than Eric. Cliff is older than Tanya. Which of the following statements do we know is true?','John is younger than Tanya','Tanya is older than Cliff','Cliff is older than Eric','Eric and Cliff are the same age','Eric is older than Cliff',3),
 	(24,'4, 16, 36, 64, _____. What comes next?','144','81','72','128','100',5),

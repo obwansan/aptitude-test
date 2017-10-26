@@ -7,6 +7,9 @@
 - Run: `php -S localhost:8080`
 - Install the aptitude-test.sql file from /api/db into your vagrant box database
 
+### Composer
+- from the api file run composer update
+- generate a new token from the url provided
 
 ### Routes
 

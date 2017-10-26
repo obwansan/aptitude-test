@@ -51,7 +51,7 @@ $app->get('/user', function ($request, $response, $args) {
 
     if (empty($email)) {
         try {
-            $query = "SELECT `id`, `email`, `name`, `dateCreated` from `user` ORDER BY `dateCreated` DESC;";
+            $query = "SELECT `id`, `email`, `name`, `dateCreated`, `isAdmin`, `deleted` from `user` ORDER BY `dateCreated` DESC;";
             $query = $this->db->prepare($query);
             $query->execute();
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -89,6 +89,25 @@ $app->get('/user', function ($request, $response, $args) {
 
 });
 
+$app->delete('/user', function ($request, $response, $args) {
+    $data = ['success' => false, 'message' => 'An unexpected error occured.', 'data' => []];
+    $user = $request->getParsedBody();
+
+    if (!empty($user['id']) && is_numeric($user['id'])) {
+        try {
+            $query = "UPDATE `user` SET `deleted` = '1' WHERE `id` = :id;";
+            $query = $this->db->prepare($query);
+            $query->execute(['id' => $user['id']]);
+        } catch(Exception $e) {
+            $data['message'] = $e->getMessage();
+            return $response->withJson($data, 500);
+        }
+
+        $data['success'] = true;
+        $data['message'] = 'Successfully deleted user.';
+        return $response->withJson($data);
+    }
+});
 
 $app->get('/question', function ($request, $response, $args) {
     $data = ['success' => false, 'message' => 'An unexpected error occured.', 'data' => []];

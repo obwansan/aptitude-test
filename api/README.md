@@ -21,8 +21,13 @@ POST
 - `{'email':'example@email.com', 'name':'Fred Smith'}`
 - Returns user object.
 
+PUT
+- Update a user.
+- `{'email':'example@email.com', 'name':'Fred Smith', 'id':'1'}`
+- Returns result of user update.
+
 GET 
-- Get all registered users.
+- Get all registered users, including deleted ones.
 - No request data
 - Returns array of user objects.
 
@@ -30,6 +35,12 @@ GET
 - Find specific registered user.
 - Send users email as a GET parameter using the key of `email`.
 - Returns user object.
+
+DELETE
+- Deletes a user.
+- Send user id of user to delete.
+- Returns result of user deletion.
+
 
 **/question**
 

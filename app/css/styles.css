@@ -1,0 +1,17 @@
+* {
+  box-sizing: border-box; }
+
+body {
+  margin: 0 auto; }
+  body h1, body h2 {
+    text-align: center; }
+  body .container_controls {
+    width: 50%;
+    margin: 20px auto; }
+  body .container_input, body .container_submit {
+    text-align: center;
+    margin: 10px; }
+  body .handlebar_templates {
+    width: 80%;
+    height: 500px;
+    margin: 40px auto; }

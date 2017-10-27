@@ -5,7 +5,7 @@ function fillUserTable() {
     $.ajax({url: "http://localhost:8080/user", success: function(result){
         result.data.forEach(function (context) {
             var html = template(context)
-            $("body").append(html)
+            $("user_list").append(html)
         })
     }})
 }

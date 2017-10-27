@@ -11,11 +11,18 @@
         <h1>Welcome To The Admin Page</h1>
         <div>
             <h2>Add New User</h2>
-            <div><!--Register Form goes here--></div>
+            <div class="container_controls">
+                <div class="container_input">
+                    <input type="text" id="name" name="name" placeholder="Type your name" required>
+                    <input type="text" id="e-mail" name="e-mail" placeholder="Type your e-mail" required>
+                </div>
+                <div class="container_submit">
+                    <input type="submit" value="Submit">
+                </div>
         </div>
         <div>
             <h2>Registered Users</h2>
-            <div><!--Handlebars templates go here--></div>
+            <div class="handlebar_templates"><!--Handlebars templates go here--></div>
         </div>
     </section>
 </body>

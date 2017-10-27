@@ -1,15 +1,15 @@
 function getTemplateAjax(path, callback) {
-    var source;
-    var template;
+    var source
+    var template
 
     $.ajax({
         url: path,
         success: function (data) {
-            source = data;
-            template = Handlebars.compile(source);
+            source = data
+            template = Handlebars.compile(source)
 
             //execute the callback if passed
-            if (callback) callback(template);
+            if (callback) callback(template)
         }
     });
 }
@@ -21,14 +21,14 @@ function fillTemplate() {
     $.ajax({url: "http://localhost:8080/user", success: function(result){
         result.data.forEach(function (context) {
             var html = template(context)
-            $("body").append(html)
+            $("user_list").append(html)
         })
     }});
 }
 
 getTemplateAjax('js/templates/userTable.hbs', function(template) {
     //do something with compiled template
-    $('#handle_bars').html(template);
+    $('#handle_bars').html(template)
 
     fillTemplate()
 })

@@ -3,15 +3,12 @@
 
 body {
   margin: 0 auto; }
-  body h1, body h2 {
-    text-align: center; }
-  body .container_controls {
-    width: 50%;
-    margin: 20px auto; }
-  body .container_input, body .container_submit {
-    text-align: center;
+
+.container {
+  text-align: center; }
+
+.user_list {
+  height: 500px; }
+  .user_list .user_item p {
+    display: inline;
     margin: 10px; }
-  body .user_list {
-    width: 80%;
-    height: 500px;
-    margin: 40px auto; }

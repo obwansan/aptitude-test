@@ -4,24 +4,18 @@
 
 body {
   margin: 0 auto;
+}
 
-  h1, h2 {
-    text-align: center;
-  }
 
-  .container_controls {
-    width: 50%;
-    margin: 20px auto;
-  }
-
-  .container_input, .container_submit {
-    text-align: center;
-    margin: 10px;
+.container {
+  text-align: center;
   }
 
   .user_list {
-    width: 80%;
     height: 500px;
-    margin: 40px auto;
+
+    .user_item p {
+      display: inline;
+      margin: 10px;
+    }
   }
-}

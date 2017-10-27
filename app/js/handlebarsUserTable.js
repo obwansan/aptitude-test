@@ -19,7 +19,6 @@ function fillTemplate() {
     var template = Handlebars.compile(source)
 
     $.ajax({url: "http://localhost:8080/user", success: function(result){
-        console.log(result)
         result.data.forEach(function (context) {
             var html = template(context)
             $("body").append(html)

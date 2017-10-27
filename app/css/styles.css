@@ -11,7 +11,7 @@ body {
   body .container_input, body .container_submit {
     text-align: center;
     margin: 10px; }
-  body .handlebar_templates {
+  body .user_list {
     width: 80%;
     height: 500px;
     margin: 40px auto; }

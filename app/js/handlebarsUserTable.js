@@ -1,20 +1,4 @@
-function getTemplateAjax(path, callback) {
-    var source;
-    var template;
-
-    $.ajax({
-        url: path,
-        success: function (data) {
-            source = data;
-            template = Handlebars.compile(source);
-
-            //execute the callback if passed
-            if (callback) callback(template);
-        }
-    });
-}
-
-function fillTemplate() {
+function fillUserTable() {
     var source = $("#handle_bars").html()
     var template = Handlebars.compile(source)
 
@@ -23,12 +7,12 @@ function fillTemplate() {
             var html = template(context)
             $("body").append(html)
         })
-    }});
+    }})
 }
 
 getTemplateAjax('js/templates/userTable.hbs', function(template) {
     //do something with compiled template
-    $('#handle_bars').html(template);
+    $('#handle_bars').html(template)
 
-    fillTemplate()
+    fillUserTable()
 })

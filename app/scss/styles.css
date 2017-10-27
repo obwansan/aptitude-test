@@ -7,4 +7,10 @@ body {
 h1 {
   text-align: center; }
 
+.container_controls {
+  width: 50%;
+  margin: 0 auto; }
+  .container_controls .container_input {
+    text-align: center; }
+
 /*# sourceMappingURL=styles.css.map */

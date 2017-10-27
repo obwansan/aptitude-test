@@ -16,6 +16,7 @@ function doesUserExist(emailToAdd, existingUsers) {
     return result
 }
 
+// THIS IS DUMMY DATA
 var existingUsers = [
     {
         "id": "1",

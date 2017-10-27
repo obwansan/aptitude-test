@@ -1,8 +1,29 @@
 * {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
 
 body {
-  margin: 0 auto; }
+  margin: 0 auto;
+}
 
 h1, h2 {
-  text-align: center; }
+  text-align: center;
+}
+
+.container_controls {
+  width: 50%;
+  margin: 20px auto;
+  border: solid #FF9000 5px
+}
+
+.container_input, .container_submit {
+  text-align: center;
+  margin: 10px;
+}
+
+.handlebar_templates {
+  width: 80%;
+  height: 500px;
+  margin: 40px auto;
+  border: solid #0000FF 5px;
+}

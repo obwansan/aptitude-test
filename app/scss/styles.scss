@@ -9,3 +9,12 @@ body {
 h1 {
   text-align: center;
 }
+
+.container_controls {
+   width: 50%;
+   margin: 0 auto;
+
+   .container_input {
+     text-align: center;
+   }
+ }

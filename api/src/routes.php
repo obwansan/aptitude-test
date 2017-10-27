@@ -5,6 +5,7 @@
 
 $app->get('/', function ($request, $response, $args) {
     // Render index view
+    $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
     return $this->renderer->render($response, 'index.phtml', $args);
 });
 
@@ -16,6 +17,7 @@ $app->post('/user', function ($request, $response, $args) {
     if (empty($user['email']) || empty($user['name'])) {
         $data['message'] = 'Invalid parameters, please provide both email and name.';
         $data['data'] = $user;
+        $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
         return $response->withJson($data, 400);
     }
 
@@ -35,12 +37,14 @@ $app->post('/user', function ($request, $response, $args) {
 
     } catch(Exception $e) {
         $data['message'] = $e->getMessage();
+        $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
         return $response->withJson($data, 500);
     }
 
     $data['success'] = true;
     $data['message'] = 'User registered.';
     $data['data'] = $result;
+    $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
     return $response->withJson($data);
 });
 
@@ -51,6 +55,7 @@ $app->put('/user', function ($request, $response, $args) {
     if (empty($user['email']) || empty($user['name']) || empty($user['id'])) {
         $data['message'] = 'Invalid parameters, please provide both email and name.';
         $data['data'] = $user;
+        $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
         return $response->withJson($data, 400);
     }
 
@@ -63,11 +68,13 @@ $app->put('/user', function ($request, $response, $args) {
         $query->execute();
     } catch(Exception $e) {
         $data['message'] = $e->getMessage();
+        $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
         return $response->withJson($data, 500);
     }
 
     $data['success'] = true;
     $data['message'] = 'User updated.';
+    $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
     return $response->withJson($data);
 });
 
@@ -85,6 +92,7 @@ $app->get('/user', function ($request, $response, $args) {
 
         } catch (Exception $e) {
             $data['message'] = $e->getMessage();
+            $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
             return $response->withJson($data, 500);
         }
 
@@ -101,6 +109,7 @@ $app->get('/user', function ($request, $response, $args) {
 
         } catch (Exception $e) {
             $data['message'] = $e->getMessage();
+            $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
             return $response->withJson($data, 500);
         }
 
@@ -112,6 +121,7 @@ $app->get('/user', function ($request, $response, $args) {
 
     $data['success'] = true;
     $data['data'] = $result;
+    $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
     return $response->withJson($data);
 
 });
@@ -127,11 +137,13 @@ $app->delete('/user', function ($request, $response, $args) {
             $query->execute(['id' => $user['id']]);
         } catch(Exception $e) {
             $data['message'] = $e->getMessage();
+            $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
             return $response->withJson($data, 500);
         }
 
         $data['success'] = true;
         $data['message'] = 'Successfully deleted user.';
+        $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
         return $response->withJson($data);
     }
 });
@@ -147,12 +159,14 @@ $app->get('/question', function ($request, $response, $args) {
 
     } catch(Exception $e) {
         $data['message'] = $e->getMessage();
+        $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
         return $response->withJson($data, 500);
     }
 
     $data['success'] = true;
     $data['message'] = 'Successfully retrieved questions.';
     $data['data'] = $result;
+    $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
     return $response->withJson($data);
 });
 
@@ -161,6 +175,7 @@ $app->get('/answer/{id}', function ($request, $response, $args) {
 
     if (empty($args['id'])) {
         $data['message'] = 'Missing question ID';
+        $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
         return $response->withJson($data, 400);
     }
 
@@ -173,12 +188,14 @@ $app->get('/answer/{id}', function ($request, $response, $args) {
 
     } catch(Exception $e) {
         $data['message'] = $e->getMessage();
+        $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
         return $response->withJson($data, 500);
     }
 
     $data['success'] = true;
     $data['message'] = 'Successfully retrieved answer.';
     $data['data'] = $result;
+    $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
     return $response->withJson($data);
 });
 
@@ -193,12 +210,14 @@ $app->get('/answer', function ($request, $response, $args) {
 
     } catch(Exception $e) {
         $data['message'] = $e->getMessage();
+        $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
         return $response->withJson($data, 500);
     }
 
     $data['success'] = true;
     $data['message'] = 'Successfully retrieved answers.';
     $data['data'] = $result;
+    $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
     return $response->withJson($data);
 });
 
@@ -213,6 +232,7 @@ $app->post('/answer', function ($request, $response, $args) {
         empty($postData['time'])
     ) {
         $data['message'] = 'Missing post data, required keys: answers, uid, score, time.';
+        $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
         return $response->withJson($data, 400);
     }
 
@@ -229,10 +249,12 @@ $app->post('/answer', function ($request, $response, $args) {
 
     } catch(Exception $e) {
         $data['message'] = $e->getMessage();
+        $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
         return $response->withJson($data, 500);
     }
 
     $data['success'] = true;
     $data['message'] = 'Successfully saved answers.';
+    $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
     return $response->withJson($data);
 });

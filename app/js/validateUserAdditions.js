@@ -1,6 +1,6 @@
 function isEmailValid(email) {
         var regexEmail = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
-        if (regexEmail.test(email.value)) {
+        if (regexEmail.test(email)) {
             return true
         } else {
             return false
@@ -20,6 +20,7 @@ function isEmailValid(email) {
 function doesUserExist(emailToAdd, existingUsers) {
     var result = false
     existingUsers.forEach(function(user) {
+        console.log(user.email)
         if (user.email === emailToAdd) {
             result = true
         }
@@ -27,8 +28,9 @@ function doesUserExist(emailToAdd, existingUsers) {
     return result
 }
 
-
 document.getElementsByClassName('container_controls')[0].addEventListener('submit', function(event) {
+    event.preventDefault()
+    event.returnValue = false
     // THIS IS DUMMY DATA
     var existingUsers = [
         {
@@ -47,48 +49,8 @@ document.getElementsByClassName('container_controls')[0].addEventListener('submi
             "deleted": "0"
         }
     ]
-    var email = document.getElementById("email")
-    if (isEmailValid(email) !== true) {
+    var email = document.getElementById("email").value
+       if (isEmailValid(email) !== true || doesUserExist(email, existingUsers) === true) {
         document.getElementById("email").insertAdjacentHTML('afterend', "<div class='title_input'>Your email is not valid or already exists: Please provide a correct email</div>")
-        event.preventDefault()
-        event.returnValue = false
     }
 })
-
-
-//create event listener submit
-// prevent default
-// call is email valid
-// define emailToAdd + existingUsers
-// does user exist
-
-
-// THIS IS DUMMY DATA
-// var existingUsers = [
-//     {
-//         "id": "1",
-//         "email": "emailme@mikeoram.co.uk",
-//         "name": "Mike",
-//         "dateCreated": "2017-10-26 13:48:29",
-//         "isAdmin": "1",
-//         "deleted": "0"
-//     }, {
-//         "id": "2",
-//         "email": "emailme@mikeTram.co.uk",
-//         "name": "M2e",
-//         "dateCreated": "2017-11-26 13:48:29",
-//         "isAdmin": "1",
-//         "deleted": "0"
-//     }
-// ]
-
-// isEmailValid()
-// function doesUserExist(emailToAdd, existingUsers) {
-//     var result = false
-//     existingUsers.forEach(function (user) {
-//         if (user.email === emailToAdd) {
-//             result = true
-//         }
-//     })
-//     return result
-// }

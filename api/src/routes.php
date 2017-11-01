@@ -89,24 +89,22 @@ $app->get('/user', function ($request, $response, $args) {
             $query = $this->db->prepare($query);
             $query->execute();
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
-
         } catch (Exception $e) {
             $data['message'] = $e->getMessage();
             $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
             return $response->withJson($data, 500);
         }
-
+        $data['success'] = true;
         $data['message'] = 'Users found.';
 
     } else {
 
         try {
-            $query = "SELECT `id` from `user` WHERE `email` = :email";
+            $query = "SELECT `id`, `email`, `name`, `dateCreated`, `isAdmin` from `user` WHERE `email` = :email AND `deleted` <> 1";
             $query = $this->db->prepare($query);
             $query->bindParam(':email', $email);
             $query->execute();
             $result = $query->fetch(PDO::FETCH_ASSOC);
-
         } catch (Exception $e) {
             $data['message'] = $e->getMessage();
             $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
@@ -114,12 +112,13 @@ $app->get('/user', function ($request, $response, $args) {
         }
 
         $data['message'] = 'User not registered.';
+        $data['success'] = false;
         if ($result) {
             $data['message'] = 'User found.';
+            $data['success'] = true;
         }
     }
 
-    $data['success'] = true;
     $data['data'] = $result;
     $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
     return $response->withJson($data);
@@ -255,6 +254,51 @@ $app->post('/answer', function ($request, $response, $args) {
 
     $data['success'] = true;
     $data['message'] = 'Successfully saved answers.';
+    $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
+    return $response->withJson($data);
+});
+
+$app->get('/result', function ($request, $response, $args) {
+    $data = ['success' => false, 'message' => 'An unexpected error occured.', 'data' => []];
+
+    $uid = $request->getQueryParam('id');
+
+    if (!empty($uid)) {
+        try {
+            $query = "SELECT `uid` as 'id', `answers`, `score`, `time`, `dateCreated` from `result` WHERE `uid` = :uid;";
+            $query = $this->db->prepare($query);
+            $query->bindParam(':uid', $uid);
+            $query->execute();
+            $result = $query->fetch(PDO::FETCH_ASSOC);
+
+        } catch(Exception $e) {
+            $data['message'] = $e->getMessage();
+            $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
+            return $response->withJson($data, 500);
+        }
+    } else {
+        try {
+            $query = "SELECT `uid` as 'id', `answers`, `score`, `time`, `dateCreated` from `result`;";
+            $query = $this->db->prepare($query);
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        } catch(Exception $e) {
+            $data['message'] = $e->getMessage();
+            $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
+            return $response->withJson($data, 500);
+        }
+    }
+
+    if (empty($result)) {
+        $data['success'] = false;
+        $data['message'] = 'No results found.';
+        $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
+        return $response->withJson($data, 200);
+    }
+
+    $data['success'] = true;
+    $data['message'] = 'Successfully retrieved results.';
+    $data['data'] = $result;
     $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
     return $response->withJson($data);
 });

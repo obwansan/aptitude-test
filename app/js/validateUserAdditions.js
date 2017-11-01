@@ -22,7 +22,7 @@ function isEmailValid(email) {
  *
  * @returns {boolean} - Does the user already exist
  */
-function UserExist(emailToAdd, existingUsers) {
+function userExists(emailToAdd, existingUsers) {
     var result = false
     existingUsers.forEach(function(user) {
             if (user.email === emailToAdd) {
@@ -54,7 +54,7 @@ document.querySelector('.container_controls').addEventListener('submit', functio
         }
     ]
     var email = document.getElementById("email").value
-    if (isEmailValid(email) !== true || doesUserExist(email, existingUsers) === true) {
+    if (isEmailValid(email) !== true || userExists(email, existingUsers) === true) {
         var errorMessage = "<div id='error' class='title_input'>Your email is not valid or already exists: Please provide a correct email</div>"
 
         //ternary conditional saying if the error message exists to do nothing, and if it doesn't, to add the error message

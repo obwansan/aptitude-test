@@ -1,5 +1,5 @@
 document.querySelector('.container_controls').addEventListener('submit', function(){
-    let jsonString = stringifyJSON()
+    let jsonString = userDetailsToJsonString()
 })
 
 /**
@@ -7,10 +7,10 @@ document.querySelector('.container_controls').addEventListener('submit', functio
  *
  * @returns JSON object with the input from the HTML name and e-mail field
  */
-function stringifyJSON () {
+function userDetailsToJsonString () {
     let name = document.getElementById('name').value
     let email = document.getElementById('email').value
-    return alert(JSON.stringify({'name': name, 'email': email}))
+    return JSON.stringify({'name': name, 'email': email})
 }
 
 

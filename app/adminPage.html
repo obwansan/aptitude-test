@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="css/bootstrap.css" type="text/css" rel="stylesheet">
+    <link href="css/styles.css" type="text/css" rel="stylesheet">
+    <script src="js/jquery-1.12.4.js"></script>
+    <script src="js/handlebars-v4.0.11.js"></script>
+    <title>Admin Page</title>
+</head>
+<body>
+    <section class="container col-lg-offset-3 col-lg-6">
+        <h1>Welcome To The Admin Page</h1>
+        <div>
+            <h2>Add New User</h2>
+            <form class="container_controls">
+                <div class="container_input">
+                    <input type="text" id="name" name="name" placeholder="Type your name" required>
+                    <input type="text" id="email" name="email" placeholder="Type your email" required>
+                </div>
+                <div class="container_submit">
+                    <input type="submit" value="Add User">
+                </div>
+            </form>
+        </div>
+        <div>
+            <h2>Registered Users</h2>
+            <div class="user_list col-lg-offset-3 col-lg-6"></div>
+        </div>
+    </section>
+</body>
+<script src="js/regexTest.js"></script>
+<script src="js/ajaxHandlebarsTemplate.js"></script>
+<script src="js/handlebarsUserTable.js"></script>
+</html>

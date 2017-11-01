@@ -1,12 +1,12 @@
 /**
- * Save the JSON object using an AJAX request
+ * save the JSON object using an AJAX request
  *
- * @param user The JSON object including name and email keys
+ * @param user the JSON object including name and email keys
  *
- * @returns A promise containing the response, which includes the boolean success property
+ * @returns a promise containing the response, which includes the boolean success property
  */
 async function saveNewUser(user) {
-    formData = jsonToFormData(user) // API does not work with JSON - needs form data.
+    formData = jsonToFormData(user) // API does not work with JSON - needs form data
 
     let apiData = await fetch(
         'http://localhost:8080/user',
@@ -21,11 +21,11 @@ async function saveNewUser(user) {
 }
 
 /**
- * Convert a JSON object into form data suitable for passing to an API built for form data.
+ * convert a JSON object into form data suitable for passing to an API built for form data
  *
- * @param jsonInput The JSON object to be converted.
+ * @param jsonInput the JSON object to be converted.
  *
- * @returns A form data object.
+ * @returns a form data object.
  */
 function jsonToFormData(jsonInput) {
     let formData = new FormData()
@@ -33,6 +33,6 @@ function jsonToFormData(jsonInput) {
     Object.keys(jsonInput).forEach((key) => {
         formData.append(key, jsonInput[key])
     })
-    
+
     return formData
 }

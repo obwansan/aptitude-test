@@ -82,35 +82,34 @@ $app->get('/user', function ($request, $response, $args) {
             $query = $this->db->prepare($query);
             $query->execute();
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
-
         } catch (Exception $e) {
             $data['message'] = $e->getMessage();
             return $response->withJson($data, 500);
         }
-
+        $data['success'] = true;
         $data['message'] = 'Users found.';
 
     } else {
 
         try {
-            $query = "SELECT `id` from `user` WHERE `email` = :email";
+            $query = "SELECT `id`, `email`, `name`, `dateCreated`, `isAdmin` from `user` WHERE `email` = :email AND `deleted` <> 1";
             $query = $this->db->prepare($query);
             $query->bindParam(':email', $email);
             $query->execute();
             $result = $query->fetch(PDO::FETCH_ASSOC);
-
         } catch (Exception $e) {
             $data['message'] = $e->getMessage();
             return $response->withJson($data, 500);
         }
 
         $data['message'] = 'User not registered.';
+        $data['success'] = false;
         if ($result) {
             $data['message'] = 'User found.';
+            $data['success'] = true;
         }
     }
 
-    $data['success'] = true;
     $data['data'] = $result;
     return $response->withJson($data);
 

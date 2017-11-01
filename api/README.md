@@ -68,3 +68,14 @@ GET
 - No request data, question ID included in URL.
 - Returns correct option number.
 
+**/result**
+
+GET 
+- Get all users results
+- No request data
+- Returns array of result objects.
+
+GET
+- Find specific users results.
+- Send users id as a GET parameter using the key of `id`.
+- Returns users result object.

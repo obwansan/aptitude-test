@@ -1,6 +1,11 @@
-<div>
+<div id="question_{{id}}">
+    <div>
+        <h2 class="description_label_{{id}}"></h2>
+        <p class="description_text_{{id}}"></p>
+    </div>
     <p>{{text}}</p>
-    <div action="#">
+    <div class="img_{{id}}"></div>
+    <div>
         {{#if option1}}
         <p>
             <input type="radio" name="answer_{{id}}">{{option1}}

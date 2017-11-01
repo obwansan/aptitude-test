@@ -11,12 +11,12 @@ async function getExistingUsers() {
     )
     apiData = await apiData.json()
 
-    var users = apiData.data
+    let users = apiData.data
     users.forEach(function(user) {
         if(user.deleted == 0) {
             result.push(user)
         }
     })
-    
+
     return result
 }

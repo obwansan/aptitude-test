@@ -3,21 +3,20 @@
  *
  * @return  an array of user data
  */
-function getExistingUsers() {
-    var result = []
-    var http = new XMLHttpRequest()
-    http.open('GET', 'http://localhost:8080/user', true)
-    http.addEventListener('load', function() {
-        var resultingData=JSON.parse(this.responseText)
-        if (resultingData.success === true) {
-            var users = resultingData.data
-            users.forEach(function(user) {
-                if(user.deleted == 0) {
-                    result.push(user)
-                }
-            })
+async function getExistingUsers() {
+    let result = []
+    let apiData = await fetch(
+        'http://localhost:8080/user',
+        {method: 'get'}
+    )
+    apiData = await apiData.json()
+
+    var users = apiData.data
+    users.forEach(function(user) {
+        if(user.deleted == 0) {
+            result.push(user)
         }
     })
-    http.send()
+    
     return result
 }

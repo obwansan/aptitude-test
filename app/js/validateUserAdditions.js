@@ -1,3 +1,10 @@
+/**
+ *  validates email using regex code
+ *
+ * @param email  - the email address we want to check for
+ *
+ * @returns {boolean} - is the email valid
+ */
 function isEmailValid(email) {
         var regexEmail = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
         if (regexEmail.test(email)) {
@@ -6,8 +13,6 @@ function isEmailValid(email) {
             return false
         }
 }
-
-
 
 /**
  *  result is set to false unless the email matches an existing user's email.
@@ -20,15 +25,14 @@ function isEmailValid(email) {
 function doesUserExist(emailToAdd, existingUsers) {
     var result = false
     existingUsers.forEach(function(user) {
-        console.log(user.email)
-        if (user.email === emailToAdd) {
+            if (user.email === emailToAdd) {
             result = true
         }
     })
     return result
 }
 
-document.getElementsByClassName('container_controls')[0].addEventListener('submit', function(event) {
+document.querySelector('.container_controls').addEventListener('submit', function(event) {
     event.preventDefault()
     event.returnValue = false
     // THIS IS DUMMY DATA
@@ -51,6 +55,13 @@ document.getElementsByClassName('container_controls')[0].addEventListener('submi
     ]
     var email = document.getElementById("email").value
        if (isEmailValid(email) !== true || doesUserExist(email, existingUsers) === true) {
-        document.getElementById("email").insertAdjacentHTML('afterend', "<div class='title_input'>Your email is not valid or already exists: Please provide a correct email</div>")
-    }
+        var errorMessage = "<div id='error' class='title_input'>Your email is not valid or already exists: Please provide a correct email</div>"
+
+           //ternary conditional saying if the error message exists to do nothing, and if it doesn't, to add the error message
+           document.getElementById('error') ? console.log('try again') : document.getElementById("email").insertAdjacentHTML('afterend', errorMessage)
+    } else {
+           //replace console.log with ajax add user function and clear form
+        console.log('it works!')
+       }
+
 })

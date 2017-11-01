@@ -16,7 +16,7 @@ function fillUserTable(HBTemplate) {
                 console.log(userData)
                 let html = template(userData)
                 console.log(html)
-                document.querySelector(".user_list").innerHTML = html
+                document.querySelector(".user_list").innerHTML += html
             })
         })
 }

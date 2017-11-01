@@ -273,6 +273,7 @@ $app->get('/result', function ($request, $response, $args) {
 
         } catch(Exception $e) {
             $data['message'] = $e->getMessage();
+            $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
             return $response->withJson($data, 500);
         }
     } else {
@@ -283,6 +284,7 @@ $app->get('/result', function ($request, $response, $args) {
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
         } catch(Exception $e) {
             $data['message'] = $e->getMessage();
+            $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
             return $response->withJson($data, 500);
         }
     }
@@ -290,11 +292,13 @@ $app->get('/result', function ($request, $response, $args) {
     if (empty($result)) {
         $data['success'] = false;
         $data['message'] = 'No results found.';
+        $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
         return $response->withJson($data, 200);
     }
 
     $data['success'] = true;
     $data['message'] = 'Successfully retrieved results.';
     $data['data'] = $result;
+    $response = $response->withAddedHeader('Access-Control-Allow-Origin', '*');
     return $response->withJson($data);
 });

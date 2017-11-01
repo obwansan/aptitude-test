@@ -1,7 +1,7 @@
 /**
  *  validates email using regex code
  *
- * @param email  - the email address we want to check for
+ * @param email - the email address we want to check for
  *
  * @returns {boolean} - is the email valid
  */
@@ -15,14 +15,14 @@ function isEmailValid(email) {
 }
 
 /**
- *  result is set to false unless the email matches an existing user's email.
+ *  returns true if email to add is identical to an existing user
  *
  * @param emailToAdd  - The email address we want to check for
  * @param existingUsers - The array of existing users data
  *
  * @returns {boolean} - Does the user already exist
  */
-function doesUserExist(emailToAdd, existingUsers) {
+function UserExist(emailToAdd, existingUsers) {
     var result = false
     existingUsers.forEach(function(user) {
             if (user.email === emailToAdd) {
@@ -54,14 +54,13 @@ document.querySelector('.container_controls').addEventListener('submit', functio
         }
     ]
     var email = document.getElementById("email").value
-       if (isEmailValid(email) !== true || doesUserExist(email, existingUsers) === true) {
+    if (isEmailValid(email) !== true || doesUserExist(email, existingUsers) === true) {
         var errorMessage = "<div id='error' class='title_input'>Your email is not valid or already exists: Please provide a correct email</div>"
 
-           //ternary conditional saying if the error message exists to do nothing, and if it doesn't, to add the error message
-           document.getElementById('error') ? console.log('try again') : document.getElementById("email").insertAdjacentHTML('afterend', errorMessage)
+        //ternary conditional saying if the error message exists to do nothing, and if it doesn't, to add the error message
+        document.getElementById('error') ? console.log('try again') : document.getElementById("email").insertAdjacentHTML('afterend', errorMessage)
     } else {
-           //replace console.log with ajax add user function and clear form
+        //replace console.log with ajax add user function and clear form
         console.log('it works!')
-       }
-
+    }
 })

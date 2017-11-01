@@ -235,3 +235,44 @@ $app->post('/answer', function ($request, $response, $args) {
     $data['message'] = 'Successfully saved answers.';
     return $response->withJson($data);
 });
+
+$app->get('/result', function ($request, $response, $args) {
+    $data = ['success' => false, 'message' => 'An unexpected error occured.', 'data' => []];
+
+    $uid = $request->getQueryParam('id');
+
+    if (!empty($uid)) {
+        try {
+            $query = "SELECT `uid` as 'id', `answers`, `score`, `time`, `dateCreated` from `result` WHERE `uid` = :uid;";
+            $query = $this->db->prepare($query);
+            $query->bindParam(':uid', $uid);
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        } catch(Exception $e) {
+            $data['message'] = $e->getMessage();
+            return $response->withJson($data, 500);
+        }
+    } else {
+        try {
+            $query = "SELECT `uid` as 'id', `answers`, `score`, `time`, `dateCreated` from `result`;";
+            $query = $this->db->prepare($query);
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        } catch(Exception $e) {
+            $data['message'] = $e->getMessage();
+            return $response->withJson($data, 500);
+        }
+    }
+
+    if (empty($result)) {
+        $data['success'] = false;
+        $data['message'] = 'No results found.';
+        return $response->withJson($data, 200);
+    }
+
+    $data['success'] = true;
+    $data['message'] = 'Successfully retrieved results.';
+    $data['data'] = $result;
+    return $response->withJson($data);
+});

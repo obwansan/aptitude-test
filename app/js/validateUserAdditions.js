@@ -1,34 +1,67 @@
-function isEmailValid() {
+/**
+ *  validates email using regex code
+ *
+ * @param email  - the email address we want to check for
+ *
+ * @returns {boolean} - is the email valid
+ */
+function isEmailValid(email) {
         var regexEmail = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
-        var email = document.getElementById("email")
-        if (regexEmail.test(email.value)) {
+        if (regexEmail.test(email)) {
             return true
         } else {
             return false
         }
 }
 
-isEmailValid()
-
-function preventDefault() {
-    document.getElementsByClassName('container_controls')[0].addEventListener('submit', function (event) {
-        if (isEmailValid() !== true) {
-            document.getElementById("email").insertAdjacentHTML('afterend', "<span class='title_input'>Please provide valid email</span>")
-            event.preventDefault()
-            event.returnValue = false
+/**
+ *  result is set to false unless the email matches an existing user's email.
+ *
+ * @param emailToAdd  - The email address we want to check for
+ * @param existingUsers - The array of existing users data
+ *
+ * @returns {boolean} - Does the user already exist
+ */
+function doesUserExist(emailToAdd, existingUsers) {
+    var result = false
+    existingUsers.forEach(function(user) {
+            if (user.email === emailToAdd) {
+            result = true
         }
     })
+    return result
 }
-preventDefault()
 
+document.querySelector('.container_controls').addEventListener('submit', function(event) {
+    event.preventDefault()
+    event.returnValue = false
+    // THIS IS DUMMY DATA
+    var existingUsers = [
+        {
+            "id": "1",
+            "email": "emailme@mikeoram.co.uk",
+            "name": "Mike",
+            "dateCreated": "2017-10-26 13:48:29",
+            "isAdmin": "1",
+            "deleted": "0"
+        }, {
+            "id": "2",
+            "email": "emailme@mikeTram.co.uk",
+            "name": "M2e",
+            "dateCreated": "2017-11-26 13:48:29",
+            "isAdmin": "1",
+            "deleted": "0"
+        }
+    ]
+    var email = document.getElementById("email").value
+       if (isEmailValid(email) !== true || doesUserExist(email, existingUsers) === true) {
+        var errorMessage = "<div id='error' class='title_input'>Your email is not valid or already exists: Please provide a correct email</div>"
 
-// isEmailValid()
-// function doesUserExist(emailToAdd, existingUsers) {
-//     var result = false
-//     existingUsers.forEach(function (user) {
-//         if (user.email === emailToAdd) {
-//             result = true
-//         }
-//     })
-//     return result
-// }
+           //ternary conditional saying if the error message exists to do nothing, and if it doesn't, to add the error message
+           document.getElementById('error') ? console.log('try again') : document.getElementById("email").insertAdjacentHTML('afterend', errorMessage)
+    } else {
+           //replace console.log with ajax add user function and clear form
+        console.log('it works!')
+       }
+
+})

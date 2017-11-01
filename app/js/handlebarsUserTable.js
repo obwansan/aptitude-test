@@ -1,18 +1,20 @@
 function fillUserTable() {
-    var source = $("#handle_bars").html()
-    var template = Handlebars.compile(source)
+    let source = document.querySelector("#handle_bars").innerHTML
+    let template = Handlebars.compile(source)
 
-    $.ajax({url: "http://localhost:8080/user", success: function(result){
-        result.data.forEach(function (context) {
-            var html = template(context)
-            $(".user_list").append(html)
+    fetch("http://localhost:8080/user")
+        .then(function (result) {
+            return result.json()
         })
-    }})
+        .then(function (result) {
+            result.data.forEach(function (context) {
+                let html = template(context)
+                document.querySelector(".user_list").innerHTML = html
+            })
+        })
 }
 
-getTemplateAjax('js/templates/userTable.hbs', function(template) {
-    //do something with compiled template
-    $('#handle_bars').html(template)
-
+getTemplateAjax('js/templates/userTable.hbs').then(function(data) {
+    document.querySelector("#handle_bars").innerHTML = data
     fillUserTable()
 })

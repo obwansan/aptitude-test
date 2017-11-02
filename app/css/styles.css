@@ -1,15 +1,12 @@
-* {
-  box-sizing: border-box; }
-
-body {
-  margin: 0 auto; }
-
 .container {
-  text-align: center; }
+  text-align: center;
+}
 
 .user_list {
-  height: 500px; }
-  .user_list .user_item p {
+  height: 500px;
+}
+
+.user_list .user_item p {
     display: inline;
     margin: 10px; }
 

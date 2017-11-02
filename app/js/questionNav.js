@@ -1,4 +1,5 @@
 var current = 1
+
 /*
 *adds active to the first question
 * function in called when questions are inserted into html
@@ -7,6 +8,7 @@ function active() {
     document.querySelector(".q_" + current).classList.add("active")
     document.querySelector("h4").textContent = current
 }
+
 /*
 *adds active class to next question, removes from current question
 * makes the prev and next buttons appear when needed
@@ -49,7 +51,6 @@ function prev() {
         document.querySelector(".q_" + current).classList.add("active")
     }
 }
-
 
 document.querySelector(".next").addEventListener("click", next)
 document.querySelector(".prev").addEventListener("click", prev)

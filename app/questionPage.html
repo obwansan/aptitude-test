@@ -5,7 +5,7 @@
     <script>
         let userEmail = getCookie('userEmail')
         getUser(userEmail).then(function(user) {
-            if (!data.success || !isAuthorised(user.data)) {
+            if (!user.success || !isAuthorised(user.data)) {
                 window.location.replace("index.html")
             }
         })

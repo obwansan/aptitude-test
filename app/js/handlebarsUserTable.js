@@ -1,7 +1,7 @@
 /**
  * fills handlebars template by getting the user data from the api and inserts into the user_list div
  *
- * @param hbTemplate the handlebars template
+ * @param HBTemplate the handlebars template
  */
 function fillUserTable(HBTemplate) {
     let template = Handlebars.compile(HBTemplate)

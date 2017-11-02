@@ -1,8 +1,8 @@
 /**
  * asynchronously fetches handlebars templates
  *
- * @param url of the template in use
- * @returns html handlebars template as text
+ * @param path of the template in use
+ * @returns the template as text inside a promise
  */
 async function getTemplateAjax(path) {
     let response = await fetch(

@@ -5,6 +5,7 @@ var current = 1
  */
 function active() {
     document.querySelector(".q_" + current).classList.add("active")
+    document.querySelector("h4").textContent = current
 }
 /*
 *adds active class to next question, removes from current question
@@ -13,6 +14,7 @@ function active() {
 function next() {
     current++
     let nextQuestion = document.querySelector(".q_" + current)
+    document.querySelector("h4").textContent = current
 
     if(current !== 1) {
         document.querySelector(".prev").style.display = "block"
@@ -33,6 +35,7 @@ function next() {
 function prev() {
     current--
     let prevQuestion = document.querySelector(".q_" + current)
+    document.querySelector("h4").textContent = current
 
     if(current === 1) {
         document.querySelector(".prev").style.display = "none"
@@ -46,6 +49,7 @@ function prev() {
         document.querySelector(".q_" + current).classList.add("active")
     }
 }
+
 
 document.querySelector(".next").addEventListener("click", next)
 document.querySelector(".prev").addEventListener("click", prev)

@@ -20,3 +20,11 @@ async function getExistingUsers() {
 
     return result
 }
+
+function redirectUser(user) {
+    if (user.isAdmin) {
+        window.location.replace("adminPage.html")
+    } else {
+        window.location.replace("questionPage.html")
+    }
+}

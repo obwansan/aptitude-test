@@ -72,14 +72,14 @@ if (document.querySelector('#logInForm')) {
  *  indicate whether the user is authorised to see question page or admin page
  *
  * @param user - the user seeking access
- * @param isAdmin default zero - set to 1 to check for admin rather than non-admin
+ * @param needsAdmin default null - set to non-null to check for admin rather than non-admin
  *
  * @return boolean - true if authorised and admin/non-admin respectively
  */
-function isAuthorised(user, isAdmin = null) {
+function isAuthorised(user, needsAdmin = null) {
     if (
-        (user.isAdmin != 0 && isAdmin != null) ||
-        (user.isAdmin == 0 && isAdmin == null)
+        (user.isAdmin != 0 && needsAdmin != null) ||
+        (user.isAdmin == 0 && needsAdmin == null)
     ) {
         return true
     }

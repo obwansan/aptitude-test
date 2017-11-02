@@ -14,7 +14,7 @@ function fillUserTable(HBTemplate) {
             let user_list = document.querySelector(".user_list")
             user_list.innerHTML = ""
 
-            if (result.success = true) {
+            if (result.success) {
                 result.data.forEach(function (userData) {
                     let html = template(userData)
                     user_list.innerHTML += html

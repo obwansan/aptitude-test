@@ -63,3 +63,25 @@ document.querySelector('#logInForm').addEventListener('submit', function(e) {
         }
     })
 })
+
+/**
+ *  indicate whether the user is authorised to see question page or admin page
+ *
+ * @param user - the user seeking access
+ * @param isAdmin default zero - set to 1 to check for admin rather than non-admin
+ *
+ * @return boolean - true if authorised and admin/non-admin respectively
+ */
+function isAuthorised(user, isAdmin = null) {
+    if (
+        !user.data.deleted &&
+        (
+            (user.data.isAdmin != null && isAdmin != null) ||
+            (user.data.isAdmin == null && isAdmin == null)
+        )
+    ) {
+        return true
+    }
+    return false
+}
+

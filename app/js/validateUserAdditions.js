@@ -6,7 +6,7 @@
  * @returns a promise containing the response, which includes the boolean success property
  */
 async function saveNewUser(user) {
-    formData = jsonToFormData(user) // API does not work with JSON - needs form data
+    let formData = jsonToFormData(user) // API does not work with JSON - needs form data
 
     let apiData = await fetch(
         'http://localhost:8080/user',
@@ -49,13 +49,14 @@ async function getExistingUsers() {
         {method: 'get'}
     )
     apiData = await apiData.json()
-
-    let users = apiData.data
-    users.forEach(function(user) {
-        if(user.deleted == 0) {
-            result.push(user)
-        }
-    })
+    if (apiData.success) {
+        let users = apiData.data
+        users.forEach(function (user) {
+            if (user.deleted == 0) {
+                result.push(user)
+            }
+        })
+    }
     return result
 }
 
@@ -67,12 +68,11 @@ async function getExistingUsers() {
  * @returns {boolean} - is the email valid
  */
 function isEmailValid(email) {
-        var regexEmail = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
-        if (regexEmail.test(email)) {
-            return true
-        } else {
-            return false
-        }
+    const regexEmail = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
+    if (regexEmail.test(email)) {
+        return true
+    }
+    return false
 }
 
 /**
@@ -85,33 +85,35 @@ function isEmailValid(email) {
  */
 function userExists(emailToAdd, existingUsers) {
     var result = false
-    existingUsers.forEach(function(user) {
-            if (user.email === emailToAdd) {
+    existingUsers.forEach(function (user) {
+        if (user.email === emailToAdd) {
             result = true
         }
     })
     return result
 }
 
-document.querySelector('.container_controls').addEventListener('submit', function(event) {
+document.querySelector('#addNewUserForm').addEventListener('submit', function (event) {
     event.preventDefault()
-    event.returnValue = false
-    var email = document.getElementById("email").value
-    getExistingUsers().then(function(existingUsers) {
+    var emailField = document.getElementById("email")
+    var nameField = document.getElementById('name')
+    var errorField = document.getElementById('error')
+    getExistingUsers().then(function (existingUsers) {
 
-          if (isEmailValid(email) !== true || userExists(email, existingUsers) === true) {
-        var errorMessage = "Your email is not valid or already exists: Please provide a correct email"
-        document.getElementById("error").innerHTML = errorMessage
-    } else {
-              document.getElementById("error").innerHTML = ''
-              let name = document.getElementById('name').value
-              saveNewUser({'name': name, 'email': email}).then(function(response){
-                  if (response.success == true) {
-                      document.getElementById('name').value = ''
-                      document.getElementById('email').value = ''
-                  } else {
-                      document.getElementById("error").innerHTML = "there's a problem: breathe slowly and try again"
-                  }
-              })
-    }})
+        if (!isEmailValid(emailField.value) || userExists(emailField.value, existingUsers)) {
+            var errorMessage = "Your email is not valid or already exists: Please provide a correct email"
+            errorField.innerHTML = errorMessage
+        } else {
+            errorField.innerHTML = ''
+
+            saveNewUser({'name': nameField.value, 'email': emailField.value}).then(function (response) {
+                if (response.success) {
+                    nameField.value = ''
+                    emailField.value = ''
+                } else {
+                    errorField.innerHTML = response.message
+                }
+            })
+        }
+    })
 })

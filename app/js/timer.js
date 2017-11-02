@@ -16,4 +16,17 @@ function timer() {
     }
 }
 
+/**
+ *  gets amount of time user took to complete the test in the format the api requires
+ *
+ *  @return string in format M.S
+ */
+function getTimeForApi() {
+    let timeTaken = 1799 - timeLimit
+    let minutes = ("00" + Math.floor(timeTaken / 60)).slice(-2)
+    let seconds = ("00" + Math.floor(timeTaken - minutes * 60)).slice(-2)
+    let time = minutes + '.' + seconds
+    return time
+}
+
 let interval = setInterval(timer, 1000)

@@ -8,12 +8,32 @@
  */
 function doesUserExist(emailToAdd, existingUsers) {
     var result = false
-     existingUsers.forEach(function (user) {
+     existingUsers.forEach(function(user) {
          if (user.email === emailToAdd) {
              result = true
          }
      })
     return result
+}
+
+/**
+ * gets users from api based on user email address.
+ *
+ * @param email - users email
+ *
+ * @return {Promise.<boolean>}
+ */
+async function getUser(email) {
+    let user = false
+    let apiData = await fetch(
+        'http://localhost:8080/user?email=' + email,
+        {method: 'get'}
+    )
+    apiData = await apiData.json()
+    if (apiData.success) {
+        user = apiData.data
+    }
+    return user
 }
 
 // THIS IS DUMMY DATA

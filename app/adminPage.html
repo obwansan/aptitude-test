@@ -2,6 +2,15 @@
 <html>
 <script lang="en"></script>
 <head>
+    <script src="js/userLogIn.js"></script>
+    <script>
+        let userEmail = getCookie('userEmail')
+        getUser(userEmail).then(function(user) {
+            if (!data.success || !isAuthorised(user.data, "1")) {
+                window.location.replace("index.html")
+            }
+        })
+    </script>
     <meta charset="UTF-8">
     <link href="css/bootstrap.css" type="text/css" rel="stylesheet">
     <link href="css/styles.css" type="text/css" rel="stylesheet">

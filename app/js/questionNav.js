@@ -6,7 +6,7 @@ var current = 1
  */
 function active() {
     document.querySelector(".q_" + current).classList.add("active")
-    document.querySelector("h4").textContent = current
+    document.querySelector("h4").textContent = current + "/30"
 }
 
 /*
@@ -16,7 +16,7 @@ function active() {
 function next() {
     current++
     let nextQuestion = document.querySelector(".q_" + current)
-    document.querySelector("h4").textContent = current
+    document.querySelector("h4").textContent = current + "/30"
 
     if(current !== 1) {
         document.querySelector(".prev").style.display = "block"
@@ -37,7 +37,7 @@ function next() {
 function prev() {
     current--
     let prevQuestion = document.querySelector(".q_" + current)
-    document.querySelector("h4").textContent = current
+    document.querySelector("h4").textContent = current + "/30"
 
     if(current === 1) {
         document.querySelector(".prev").style.display = "none"

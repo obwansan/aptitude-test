@@ -1,6 +1,6 @@
 var current = 1
 
-/*
+/**
 *adds active to the first question
 * function in called when questions are inserted into html
  */
@@ -9,7 +9,7 @@ function active() {
     document.querySelector("h4").textContent = current + "/30"
 }
 
-/*
+/**
 *adds active class to next question, removes from current question
 * makes the prev and next buttons appear when needed
  */
@@ -30,7 +30,7 @@ function next() {
     }
 }
 
-/*
+/**
 *adds active class to prev question, removes from current question
 * makes the prev and next buttons appear when needed
  */

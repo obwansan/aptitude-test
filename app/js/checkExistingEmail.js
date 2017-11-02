@@ -15,11 +15,10 @@ function doesUserExist(emailToAdd, existingUsers) {
      })
     return result
 }
-
 /**
- * gets users from api based on user email address.
+ *  async function gets users from api based on user email address.
  *
- * @param email - users email
+ * @param email - variable that get users input email
  *
  * @return {Promise.<boolean>}
  */

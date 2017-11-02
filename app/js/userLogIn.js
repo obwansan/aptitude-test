@@ -31,6 +31,20 @@ async function checkIfTestIsTaken(userId) {
     return idData
 }
 
+/**
+ *this redirects admins and users to correct pages.
+ *
+ * @param user - checks to see status , user or admin.
+ *
+ */
+function redirectUser(user) {
+    if (user.isAdmin == "1") {
+        window.location.replace("adminPage.html")
+    } else {
+        window.location.replace("questionPage.html")
+    }
+}
+
 document.querySelector('#logInForm').addEventListener('submit', function(e) {
     e.preventDefault()
     let email = document.getElementById('email')
@@ -39,9 +53,9 @@ document.querySelector('#logInForm').addEventListener('submit', function(e) {
         if(user.success && user.data.id) {
             checkIfTestIsTaken(user.data.id).then(function(idData) {
                 if (idData.success) {
-                    userEmail.insertAdjacentHTML('afterend', '<p>The test cannot be done twice</p>')
+                    email.insertAdjacentHTML('afterend', '<p>The test cannot be done twice</p>')
                 } else {
-                    redirectUser(user.data.id)
+                    redirectUser(user.data)
                 }
             })
         } else {

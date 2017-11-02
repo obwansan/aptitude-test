@@ -7,6 +7,7 @@ document.querySelector('#logInForm').addEventListener('submit', function(e){
     let email = document.getElementById('email').value
     getUser(email).then(function(user) {
         if (user) {
+            document.cookie = "uid=" + user.id
             redirectUser(user)
         } else {
             let errorMessage = '<div class="alert alert-danger" role="alert">Invalid user. Please try again.</div>'

@@ -1,16 +1,19 @@
+/**
+ *  sets a 30 minute timer for taking the test
+ */
 
-var distance = 1799
+//30 minute time limit
+let timeLimit = 1799
 
 function timer() {
-    var minutes = Math.floor(distance / 60);
-    var seconds = Math.floor(distance - minutes * 60);
+    let minutes = Math.floor(timeLimit / 60);
+    let seconds = Math.floor(timeLimit - minutes * 60);
 
     document.querySelector(".timer").innerHTML = minutes + "m " + seconds + "s ";
-    distance--
-    if (distance < 0){
+    timeLimit--
+    if (timeLimit < 0){
         clearInterval(interval)
     }
 }
 
-
-var interval = setInterval(timer, 1000)
+let interval = setInterval(timer, 1000)

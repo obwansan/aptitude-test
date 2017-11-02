@@ -29,7 +29,7 @@ async function saveNewUser(user) {
  */
 function jsonToFormData(jsonInput) {
     let formData = new FormData()
-
+    
     Object.keys(jsonInput).forEach((key) => {
         formData.append(key, jsonInput[key])
     })
@@ -110,6 +110,7 @@ document.querySelector('#addNewUserForm').addEventListener('submit', function (e
                 if (response.success) {
                     nameField.value = ''
                     emailField.value = ''
+                    updateUserTable()
                 } else {
                     errorField.innerHTML = response.message
                 }

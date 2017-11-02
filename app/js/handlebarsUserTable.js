@@ -12,6 +12,7 @@ function fillUserTable(HBTemplate) {
         })
         .then(function (result) {
             let user_list = document.querySelector(".user_list")
+            user_list.innerHTML = ""
 
             if (result.success = true) {
                 result.data.forEach(function (userData) {
@@ -24,6 +25,13 @@ function fillUserTable(HBTemplate) {
         })
 }
 
-getTemplateAjax('js/templates/userTable.hbs').then(function(HBTemplate) {
-    fillUserTable(HBTemplate)
-})
+/**
+ * get the handlebars template and use this to display the users
+ */
+function updateUserTable() {
+    getTemplateAjax('js/templates/userTable.hbs').then(function (HBTemplate) {
+        fillUserTable(HBTemplate)
+    })
+}
+
+updateUserTable()

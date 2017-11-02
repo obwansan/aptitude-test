@@ -27,7 +27,6 @@ async function getExistingUsers() {
  * @param user - checks to see status , user or admin.
  *
  */
-
 function redirectUser(user) {
     if (user.isAdmin == "1") {
         window.location.replace("adminPage.html")

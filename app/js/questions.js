@@ -5,19 +5,23 @@
  */
 function fillUserTable(HBTemplate) {
     let template = Handlebars.compile(HBTemplate)
-
-    fetch("http://localhost:8080/user")
-        .then(function (result) {
+    let counter = 0;
+    fetch("http://localhost:8080/question")
+        .then(function(result) {
             return result.json()
         })
         .then(function(result) {
             result.data.forEach(function(userData) {
                 let html = template(userData)
-                document.querySelector(".user_list").innerHTML += html
+                document.querySelector(".questions").innerHTML += html
             })
+            counter = result.data.length
+        })
+        .then(function() {
+            putDescription(counter)
         })
 }
 
-getTemplateAjax('js/templates/userTable.hbs').then(function(HBTemplate) {
+getTemplateAjax('js/templates/questions.hbs').then(function(HBTemplate) {
     fillUserTable(HBTemplate)
 })

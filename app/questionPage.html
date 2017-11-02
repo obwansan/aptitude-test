@@ -2,55 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Mayden Aptitude Test</title>
     <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <link href="css/questionPage.css" type="text/css" rel="stylesheet">
-
+    <script src="js/handlebars-v4.0.11.js"></script>
+    <script src="js/ajaxHandlebarsTemplate.js" defer></script>
+    <script src="js/questions.js" defer></script>
+    <script src="js/question_desc.js" defer></script>
+    <script src="js/questionNav.js" defer></script>
+    <script src="js/timer.js" defer></script>
 </head>
 <body>
+
 <!--question number and time -->
 <div class="container">
     <div class="row">
         <div class="col-md-2">
             <h3>Question number</h3>
+            <h4></h4>
         </div>
-        <div class="col-md-8">
-        </div>
-        <div class="col-md-2">
+        <div class="col-md-offset-8 col-md-2">
             <h3 class="timer"> 30m 00s </h3>
         </div>
     </div>
-    <!--question body-->
+    <!--question body and nav-->
     <div class="row">
         <div class="col-md-2">
+            <button type="button" class="btn btn-info prev">Previous</button>
         </div>
-        <div class="col-md-8">
-            <div>
-                <p>Question </p>
-            </div>
-            <div>
-                <p> list of answers</p>
-                <p> list of answers</p>
-                <p> list of answers</p>
-                <p> list of answers</p>
-            </div>
+        <div class="question-container col-md-8">
+            <form>
+                <div id="questions"></div>
+                <button type="submit" class="btn btn-success finish">Finish</button>
+            </form>
         </div>
         <div class="col-md-2">
-        </div>
-    </div>
-    <!--question navigation-->
-    <div class="row">
-        <div class="col-md-2">
-            <button type="button" class="btn btn-info">Previous</button>
-        </div>
-        <div class="col-md-8">
-        </div>
-        <div class="col-md-2">
-            <button type="button" class="btn btn-info">Next</button>
+            <button type="button" class="btn btn-info next">Next</button>
         </div>
     </div>
 </div>
-
 </body>
-<script src="js/timer.js"></script>
 </html>

@@ -18,10 +18,10 @@ function next() {
     let nextQuestion = document.querySelector(".q_" + current)
     document.querySelector("h4").textContent = current + "/30"
 
-    if(current !== 1) {
+    if (current !== 1) {
         document.querySelector(".prev").style.display = "block"
     }
-    if(current === 30) {
+    if (current === 30) {
         document.querySelector(".next").style.display = "none"
     }
     if (nextQuestion !== null) {
@@ -39,11 +39,11 @@ function prev() {
     let prevQuestion = document.querySelector(".q_" + current)
     document.querySelector("h4").textContent = current + "/30"
 
-    if(current === 1) {
+    if (current === 1) {
         document.querySelector(".prev").style.display = "none"
         document.querySelector(".next").style.display = "block"
     }
-    if(current !== 30) {
+    if (current !== 30) {
         document.querySelector(".next").style.display = "block"
     }
     if (prevQuestion !== null) {

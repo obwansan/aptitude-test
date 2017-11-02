@@ -21,9 +21,6 @@ img {
 .answers input {
   margin: 0 10px; }
 
-.questions {
-  height: 100%; }
-
 .prev {
   display: none;
   width: 60%;

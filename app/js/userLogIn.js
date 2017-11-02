@@ -45,25 +45,28 @@ function redirectUser(user) {
     }
 }
 
-document.querySelector('#logInForm').addEventListener('submit', function(e) {
-    e.preventDefault()
-    let email = document.getElementById('email')
+if (document.querySelector('#logInForm')) {
+    document.querySelector('#logInForm').addEventListener('submit', function(e) {
+        e.preventDefault()
+        let email = document.getElementById('email')
 
-    getUser(email.value).then(function(user) {
-        if(user.success && user.data.id) {
-            checkIfTestIsTaken(user.data.id).then(function(idData) {
-                if (idData.success) {
-                    email.insertAdjacentHTML('afterend', '<p>The test cannot be done twice</p>')
-                } else {
-                    document.cookie = "uid=" + user.data.id
-                    redirectUser(user.data)
-                }
-            })
-        } else {
-            email.insertAdjacentHTML('afterend', '<p>Please provide valid name and email</p>')
-        }
+        getUser(email.value).then(function(user) {
+            if(user.success && user.data.id) {
+                checkIfTestIsTaken(user.data.id).then(function(idData) {
+                    if (idData.success) {
+                        email.insertAdjacentHTML('afterend', '<p>The test cannot be done twice</p>')
+                    } else {
+                        document.cookie = "userEmail=" + user.data.email
+                        redirectUser(user.data)
+                    }
+                })
+            } else {
+                email.insertAdjacentHTML('afterend', '<p>Please provide valid name and email</p>')
+            }
+        })
     })
-})
+}
+
 
 /**
  *  indicate whether the user is authorised to see question page or admin page
@@ -75,11 +78,8 @@ document.querySelector('#logInForm').addEventListener('submit', function(e) {
  */
 function isAuthorised(user, isAdmin = null) {
     if (
-        !user.data.deleted &&
-        (
-            (user.data.isAdmin != null && isAdmin != null) ||
-            (user.data.isAdmin == null && isAdmin == null)
-        )
+        (user.isAdmin != 0 && isAdmin != null) ||
+        (user.isAdmin == 0 && isAdmin == null)
     ) {
         return true
     }

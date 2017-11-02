@@ -13,45 +13,32 @@
     <div class="row">
         <div class="col-md-2">
             <h3>Question number</h3>
+            <h4></h4>
         </div>
-        <div class="col-md-8">
-        </div>
-        <div class="col-md-2">
+        <div class="col-md-offset-8 col-md-2">
             <h3> Time </h3>
         </div>
     </div>
-
-    <!--question body-->
-    <div class="row">
-        <div class="col-md-2">
-        </div>
-        <div class="col-md-8">
-            <div>
-                <p>Question </p>
+    <!--question body and nav-->
+        <div class="row">
+            <div class="col-md-2">
+                <button type="button" class="btn btn-info prev">Previous</button>
             </div>
-            <div>
-                <p> list of answers</p>
-                <p> list of answers</p>
-                <p> list of answers</p>
-                <p> list of answers</p>
+            <div class="question-container col-md-8">
+                <form>
+                    <div id="questions"></div>
+                <button type="submit" class="btn btn-success finish">Finish</button>
+                </form>
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-info next">Next</button>
             </div>
         </div>
-        <div class="col-md-2">
-        </div>
-    </div>
-
-    <!--question navigation-->
-    <div class="row">
-        <div class="col-md-2">
-            <button type="button" class="btn btn-info">Previous</button>
-        </div>
-        <div class="col-md-8">
-        </div>
-        <div class="col-md-2">
-            <button type="button" class="btn btn-info">Next</button>
-        </div>
-    </div>
 </div>
-
 </body>
+<script src="js/handlebars-v4.0.11.js"></script>
+<script src="js/ajaxHandlebarsTemplate.js"></script>
+<script src="js/questions.js"></script>
+<script src="js/question_desc.js"></script>
+<script src="js/questionNav.js"></script>
 </html>

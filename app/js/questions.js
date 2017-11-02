@@ -13,12 +13,13 @@ function fillUserTable(HBTemplate) {
         .then(function(result) {
             result.data.forEach(function(userData) {
                 let html = template(userData)
-                document.querySelector(".questions").innerHTML += html
+                document.querySelector("#questions").innerHTML += html
             })
             counter = result.data.length
         })
         .then(function() {
             putDescription(counter)
+            active()
         })
 }
 

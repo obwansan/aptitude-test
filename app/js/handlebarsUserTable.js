@@ -3,19 +3,19 @@
  *
  * @param hbTemplate the handlebars template
  */
-function fillUserTable(hbTemplate) {
-    let template = Handlebars.compile(hbTemplate)
+function fillUserTable(HBTemplate) {
+    let template = Handlebars.compile(HBTemplate)
 
     fetch("http://localhost:8080/user")
-        .then(function (result) {
+        .then(function(result) {
             return result.json()
         })
-        .then(function (result) {
+        .then(function(result) {
             let user_list = document.querySelector(".user_list")
             user_list.innerHTML = ""
 
             if (result.success) {
-                result.data.forEach(function (userData) {
+                result.data.forEach(function(userData) {
                     let html = template(userData)
                     user_list.innerHTML += html
                 })
@@ -29,8 +29,8 @@ function fillUserTable(hbTemplate) {
  * get the handlebars template and use this to display the users
  */
 function updateUserTable() {
-    getTemplateAjax('js/templates/userTable.hbs').then(function (hbTemplate) {
-        fillUserTable(hbTemplate)
+    getTemplateAjax('js/templates/userTable.hbs').then(function (HBTemplate) {
+        fillUserTable(HBTemplate)
     })
 }
 

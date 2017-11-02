@@ -11,7 +11,7 @@ async function saveNewUser(user) {
     let apiData = await fetch(
         'http://localhost:8080/user',
         {
-            method: 'POST',
+            method: 'post',
             body: formData
         }
     )
@@ -51,7 +51,7 @@ async function getExistingUsers() {
     apiData = await apiData.json()
     if (apiData.success) {
         let users = apiData.data
-        users.forEach(function (user) {
+        users.forEach(function(user) {
             if (user.deleted == 0) {
                 result.push(user)
             }

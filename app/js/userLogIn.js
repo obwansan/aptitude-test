@@ -61,7 +61,7 @@ if (document.querySelector('#logInForm')) {
                     }
                 })
             } else {
-                email.insertAdjacentHTML('afterend', '<p>Please provide valid email</p>')
+                document.querySelector('.invalidLogin').innerHTML = 'Please provide valid email'
             }
         })
     })

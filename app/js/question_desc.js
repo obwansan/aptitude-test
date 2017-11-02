@@ -1,3 +1,7 @@
+/*
+*inserts the question type and the question description above the question
+*
+ */
 function putDescription(counter) {
 
     for(let i = 1; i <= counter; i++) {

@@ -29,7 +29,7 @@ async function getExistingUsers() {
  */
 
 function redirectUser(user) {
-    if (user.isAdmin) {
+    if (user.isAdmin == "1") {
         window.location.replace("adminPage.html")
     } else {
         window.location.replace("questionPage.html")

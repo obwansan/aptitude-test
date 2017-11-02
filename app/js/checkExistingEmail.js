@@ -15,7 +15,13 @@ function doesUserExist(emailToAdd, existingUsers) {
      })
     return result
 }
-
+/**
+ *  async function gets users from api based on user email address.
+ *
+ * @param email - variable that get users input email
+ *
+ * @return {Promise.<boolean>}
+ */
 async function getUser(email) {
     let user = false
     let apiData = await fetch(

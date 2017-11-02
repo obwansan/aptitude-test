@@ -1,4 +1,8 @@
-document.querySelector('#logInForm').addEventListener('submit', function(e){
+/**
+ * user log in function
+ *
+ */
+document.querySelector('#logInForm').addEventListener('submit', function(e) {
     e.preventDefault()
     let email = document.getElementById('email').value
     getUser(email).then(function(user) {
@@ -11,7 +15,4 @@ document.querySelector('#logInForm').addEventListener('submit', function(e){
             document.querySelector('#logInForm').innerHTML = html
         }
     })
-
 })
-
-

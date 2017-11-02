@@ -5,6 +5,12 @@
     <title>Title</title>
     <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <link href="css/questionPage.css" type="text/css" rel="stylesheet">
+    <script src="js/handlebars-v4.0.11.js"></script>
+    <script src="js/ajaxHandlebarsTemplate.js" defer></script>
+    <script src="js/questions.js" defer></script>
+    <script src="js/question_desc.js" defer></script>
+    <script src="js/questionNav.js" defer></script>
+    <script src="js/timer.js" defer></script>
     <script src="js/checkAnswers.js" defer></script>
 </head>
 <body>
@@ -28,10 +34,8 @@
             <button type="button" class="btn btn-info prev">Previous</button>
         </div>
         <div class="question-container col-md-8">
-            <form>
-                <div id="questions"></div>
-            <button type="submit" class="btn btn-success finish">Finish</button>
-            </form>
+            <div id="questions"></div>
+            <button type="button" id="finish" class="btn btn-success finish">Finish</button>
         </div>
         <div class="col-md-2">
             <button type="button" class="btn btn-info next">Next</button>
@@ -41,10 +45,4 @@
     </div>
 </div>
 </body>
-<script src="js/handlebars-v4.0.11.js"></script>
-<script src="js/ajaxHandlebarsTemplate.js"></script>
-<script src="js/questions.js"></script>
-<script src="js/question_desc.js"></script>
-<script src="js/questionNav.js"></script>
-<script src="js/timer.js"></script>
 </html>

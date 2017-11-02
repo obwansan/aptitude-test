@@ -5,9 +5,9 @@
  */
 function result(earnedPoints) {
     let result = earnedPoints //number of points
-    let questionAmmount = 30 //ammount of questions
+    let questionAmount = 30 //ammount of questions
     document.querySelector(".score").innerHTML = result
-    document.querySelector(".score_per").innerHTML = Math.round(result / questionAmmount * 100)
+    document.querySelector(".score_per").innerHTML = Math.round(result / questionAmount * 100)
 }
 
 result()

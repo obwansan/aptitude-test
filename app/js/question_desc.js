@@ -1,3 +1,8 @@
+/**
+ *  adding required description for each question block
+ *
+ * @param counter  - question number
+ */
 function putDescription(counter) {
 
     for(let i = 1; i <= counter; i++) {

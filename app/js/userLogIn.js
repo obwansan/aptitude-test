@@ -50,7 +50,7 @@ document.querySelector('#logInForm').addEventListener('submit', function(e) {
     let email = document.getElementById('email')
 
     getUser(email.value).then(function(user) {
-        if(user.success && user.data.id) {
+        if (user.success && user.data.id) {
             checkIfTestIsTaken(user.data.id).then(function(idData) {
                 if (idData.success) {
                     email.insertAdjacentHTML('afterend', '<p>The test cannot be done twice</p>')

@@ -10,14 +10,28 @@ function fillUserTable(HBTemplate) {
         .then(function (result) {
             return result.json()
         })
-        .then(function(result) {
-            result.data.forEach(function(userData) {
-                let html = template(userData)
-                document.querySelector(".user_list").innerHTML += html
-            })
+        .then(function (result) {
+            let user_list = document.querySelector(".user_list")
+            user_list.innerHTML = ""
+
+            if (result.success) {
+                result.data.forEach(function (userData) {
+                    let html = template(userData)
+                    user_list.innerHTML += html
+                })
+            } else {
+                user_list.innerHTML = "Please contact Admin, user list unavailable"
+            }
         })
 }
 
-getTemplateAjax('js/templates/userTable.hbs').then(function(HBTemplate) {
-    fillUserTable(HBTemplate)
-})
+/**
+ * get the handlebars template and use this to display the users
+ */
+function updateUserTable() {
+    getTemplateAjax('js/templates/userTable.hbs').then(function (HBTemplate) {
+        fillUserTable(HBTemplate)
+    })
+}
+
+updateUserTable()

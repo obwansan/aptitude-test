@@ -1,17 +1,19 @@
-* {
-  box-sizing: border-box; }
-
-body {
-  margin: 0 auto; }
-
 .container {
-  text-align: center; }
+  text-align: center;
+}
 
 .user_list {
-  height: 500px; }
-  .user_list .user_item p {
+  height: 500px;
+}
+
+.user_list .user_item p {
     display: inline;
+<<<<<<< HEAD
     margin: 10px; }
 
 img {
   width: 100%; }
+=======
+    margin: 10px;
+}
+>>>>>>> story1-adminPage

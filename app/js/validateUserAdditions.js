@@ -11,7 +11,7 @@ async function saveNewUser(user) {
     let apiData = await fetch(
         'http://localhost:8080/user',
         {
-            method: 'POST',
+            method: 'post',
             body: formData
         }
     )
@@ -51,17 +51,18 @@ async function getExistingUsers() {
     apiData = await apiData.json()
     if (apiData.success) {
         let users = apiData.data
-        users.forEach(function (user) {
+        users.forEach(function(user) {
             if (user.deleted == 0) {
                 result.push(user)
             }
         })
     }
+
     return result
 }
 
 /**
- *  validates email using regex code
+ * validates email using regex code
  *
  * @param email - the email address we want to check for
  *
@@ -72,11 +73,12 @@ function isEmailValid(email) {
     if (regexEmail.test(email)) {
         return true
     }
+
     return false
 }
 
 /**
- *  returns true if email to add is identical to an existing user
+ * returns true if email to add is identical to an existing user
  *
  * @param emailToAdd  - The email address we want to check for
  * @param existingUsers - The array of existing users data
@@ -85,28 +87,29 @@ function isEmailValid(email) {
  */
 function userExists(emailToAdd, existingUsers) {
     var result = false
-    existingUsers.forEach(function (user) {
+    existingUsers.forEach(function(user) {
         if (user.email === emailToAdd) {
             result = true
         }
     })
+
     return result
 }
 
-document.querySelector('#addNewUserForm').addEventListener('submit', function (event) {
+document.querySelector('#addNewUserForm').addEventListener('submit', function(event) {
     event.preventDefault()
     var emailField = document.getElementById("email")
     var nameField = document.getElementById('name')
     var errorField = document.getElementById('error')
-    getExistingUsers().then(function (existingUsers) {
 
+    getExistingUsers().then(function(existingUsers) {
         if (!isEmailValid(emailField.value) || userExists(emailField.value, existingUsers)) {
             var errorMessage = "Your email is not valid or already exists: Please provide a correct email"
             errorField.innerHTML = errorMessage
         } else {
             errorField.innerHTML = ''
 
-            saveNewUser({'name': nameField.value, 'email': emailField.value}).then(function (response) {
+            saveNewUser({'name': nameField.value, 'email': emailField.value}).then(function(response) {
                 if (response.success) {
                     nameField.value = ''
                     emailField.value = ''

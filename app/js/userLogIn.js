@@ -55,6 +55,7 @@ document.querySelector('#logInForm').addEventListener('submit', function(e) {
                 if (idData.success) {
                     email.insertAdjacentHTML('afterend', '<p>The test cannot be done twice</p>')
                 } else {
+                    document.cookie = "uid=" + user.data.id
                     redirectUser(user.data)
                 }
             })
@@ -83,5 +84,20 @@ function isAuthorised(user, isAdmin = null) {
         return true
     }
     return false
+}
+
+
+/**
+ * gets the value of a given cookie by name
+ *
+ * @param String name the name of the cookie
+ *
+ * @return String the value of the cookie
+ *
+ */
+function getCookie(name) {
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length == 2) return parts.pop().split(";").shift();
 }
 

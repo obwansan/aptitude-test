@@ -37,7 +37,7 @@ function putDescription(counter) {
                     "you   to   determine   the   logical   sequence   of   steps   in   the   procedure</p>"
             }
             document.querySelector(descriptionText).innerHTML += "<p>These   questions   are   based   on   the   flow   chart   shown   below.   For   your   convenience,   this   flowchart   is repeated   in   each   of   these   questions   Flow   Chart   You   have   a   group   of   animals   that   you   need   to   sort   into lists   of   mammals,   birds,   fish,   amphibians,   and   reptiles.</p>"
-            document.querySelector(img).innerHTML = "<img src='../images/graph.png'>"
+            document.querySelector(img).innerHTML = "<img src='../app/images/graph.png'>"
         }
         if(i === 19){
             document.querySelector(descriptionLabel).innerHTML = "Math/Logic   Section"

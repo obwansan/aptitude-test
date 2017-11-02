@@ -6,13 +6,36 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script id="handle_bars" type="text/x-handlebars-template"></script>
-    <title>Document</title>
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 </head>
 <body>
+<div class="container">
+    <div class="col-sm-12  text-center">
+        <h3> Please Provide Validated Email</h3>
+    </div>
+    <br>
+    <br>
+    <form class="col-sm-4 col-sm-offset-4 form-horizontal" id="logInForm">
+        <div class="form-group">
+        </div>
 
+        <div class="form-group">
+
+            <div class="col-sm-12">
+                <input type="email" class="form-control" id="email" placeholder="Email">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-5 col-sm-1">
+                <button type="submit" class="btn btn-default">Sign in</button>
+            </div>
+        </div>
+    </form>
+</div>
 </body>
-<script src="js/jquery-1.12.4.js"></script>
 <script src="js/handlebars-v4.0.11.js"></script>
 <script src="js/adminFunctions.js"></script>
-<script src="js/checkExistingEmail.js"> </script>
+<script src="js/checkExistingEmail.js"></script>
+<script src="js/userLogIn.js"></script>
 </html>

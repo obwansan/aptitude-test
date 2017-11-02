@@ -1,6 +1,7 @@
-/*
-*inserts the question type and the question description above the question
-*
+/**
+ *  adding required description for each question block
+ *
+ * @param counter  - question number
  */
 function putDescription(counter) {
 

@@ -1,8 +1,8 @@
-/*
-*   takes any template
-*   returns as text
- */
-
+/**
+*  takes any template
+*
+* @returns as text
+**/
 async function getTemplateAjax(path) {
     let response = await fetch(
         path,

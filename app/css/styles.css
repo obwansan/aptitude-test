@@ -1,11 +1,9 @@
 .container {
   text-align: center; }
-
-.user_list {
-  height: 500px; }
-  .user_list .user_item p {
-    display: inline;
-    margin: 10px; }
-
-img {
-  width: 100%; }
+  .container .user_list {
+    height: 500px; }
+    .container .user_list .user_item p {
+      display: inline;
+      margin: 10px; }
+  .container img {
+    width: 100%; }

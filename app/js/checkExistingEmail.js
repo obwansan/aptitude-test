@@ -20,7 +20,7 @@ function doesUserExist(emailToAdd, existingUsers) {
  * gets users from api based on user email address.
  *
  * @param email - users email
- * 
+ *
  * @return {Promise.<boolean>}
  */
 async function getUser(email) {

@@ -20,6 +20,7 @@ async function getExistingUsers() {
 
     return result
 }
+
 /**
  *this redirects admins and users to correct pages.
  *

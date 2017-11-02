@@ -1,8 +1,9 @@
-/*
-*   takes any template
-*   returns as text
+/**
+ * asynchronously fetches handlebars templates
+ *
+ * @param path of the template in use
+ * @returns the template as text inside a promise
  */
-
 async function getTemplateAjax(path) {
     let response = await fetch(
         path,
@@ -10,4 +11,3 @@ async function getTemplateAjax(path) {
     )
     return response.text()
 }
-

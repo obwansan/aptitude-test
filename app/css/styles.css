@@ -1,9 +1,3 @@
-* {
-  box-sizing: border-box; }
-
-body {
-  margin: 0 auto; }
-
 .container {
   text-align: center; }
 
@@ -12,3 +6,6 @@ body {
   .user_list .user_item p {
     display: inline;
     margin: 10px; }
+
+img {
+  width: 100%; }

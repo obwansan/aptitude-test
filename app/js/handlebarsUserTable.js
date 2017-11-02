@@ -1,9 +1,8 @@
 /**
  * fills handlebars template by getting the user data from the api and inserts into the user_list div
+ *
  * @param HBTemplate the handlebars template
  */
-
-
 function fillUserTable(HBTemplate) {
     let template = Handlebars.compile(HBTemplate)
 
@@ -12,15 +11,27 @@ function fillUserTable(HBTemplate) {
             return result.json()
         })
         .then(function (result) {
-            result.data.forEach(function (userData) {
-                console.log(userData)
-                let html = template(userData)
-                console.log(html)
-                document.querySelector(".user_list").innerHTML += html
-            })
+            let user_list = document.querySelector(".user_list")
+            user_list.innerHTML = ""
+
+            if (result.success) {
+                result.data.forEach(function (userData) {
+                    let html = template(userData)
+                    user_list.innerHTML += html
+                })
+            } else {
+                user_list.innerHTML = "Please contact Admin, user list unavailable"
+            }
         })
 }
 
-getTemplateAjax('js/templates/userTable.hbs').then(function(HBTemplate) {
-    fillUserTable(HBTemplate)
-})
+/**
+ * get the handlebars template and use this to display the users
+ */
+function updateUserTable() {
+    getTemplateAjax('js/templates/userTable.hbs').then(function (HBTemplate) {
+        fillUserTable(HBTemplate)
+    })
+}
+
+updateUserTable()

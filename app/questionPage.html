@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="js/userLogIn.js"></script>
+    <script>
+        let userEmail = getCookie('userEmail')
+        getUser(userEmail).then(function(user) {
+            if (!user.success || !isAuthorised(user.data)) {
+                window.location.replace("index.html")
+            }
+        })
+    </script>
     <meta charset="UTF-8">
     <title>Mayden Aptitude Test</title>
     <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">

@@ -45,22 +45,55 @@ function redirectUser(user) {
     }
 }
 
-document.querySelector('#logInForm').addEventListener('submit', function(e) {
-    e.preventDefault()
-    let email = document.getElementById('email')
+if (document.querySelector('#logInForm')) {
+    document.querySelector('#logInForm').addEventListener('submit', function(e) {
+        e.preventDefault()
+        let email = document.getElementById('email')
 
-    getUser(email.value).then(function(user) {
-        if (user.success && user.data.id) {
-            checkIfTestIsTaken(user.data.id).then(function(idData) {
-                if (idData.success) {
-                    email.insertAdjacentHTML('afterend', '<p>The test cannot be done twice</p>')
-                } else {
-                    document.cookie = "uid=" + user.data.id
-                    redirectUser(user.data)
-                }
-            })
-        } else {
-            email.insertAdjacentHTML('afterend', '<p>Please provide valid name and email</p>')
-        }
+        getUser(email.value).then(function(user) {
+            if(user.success && user.data.id) {
+                checkIfTestIsTaken(user.data.id).then(function(idData) {
+                    if (idData.success) {
+                        email.insertAdjacentHTML('afterend', '<p>The test cannot be done twice</p>')
+                    } else {
+                        document.cookie = "userEmail=" + user.data.email
+                        redirectUser(user.data)
+                    }
+                })
+            } else {
+                document.querySelector('.invalidLogin').innerHTML = 'Please provide valid email'
+            }
+        })
     })
-})
+}
+
+/**
+ *  indicate whether the user is authorised to see question page or admin page
+ *
+ * @param user - the user seeking access
+ * @param needsAdmin default null - set to non-null to check for admin rather than non-admin
+ *
+ * @return boolean - true if authorised and admin/non-admin respectively
+ */
+function isAuthorised(user, needsAdmin = null) {
+    if (
+        (user.isAdmin != 0 && needsAdmin != null) ||
+        (user.isAdmin == 0 && needsAdmin == null)
+    ) {
+        return true
+    }
+    return false
+}
+
+/**
+ * gets the value of a given cookie by name
+ *
+ * @param String name the name of the cookie
+ *
+ * @return String the value of the cookie
+ */
+function getCookie(name) {
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length == 2) return parts.pop().split(";").shift();
+}

@@ -56,8 +56,21 @@ function getUserAnswers() {
 
 document.querySelector('#finish').addEventListener('click', function(e) {
     e.preventDefault()
-    checkAnswers().then(function(results) {
-        console.log(results)
+    checkAnswers().then(function(result) {
+        document.querySelector('#question_page').style.display = 'none'
+        document.querySelector('#result_page').style.display = 'block'
+        displayResult(result.score)
     })
 })
 
+/**
+ * showing and calculating result in points and percents
+ *
+ * @param earnedPoints total amount of right questions
+ */
+function displayResult(earnedPoints) {
+    let result = earnedPoints   // number of points
+    const questionAmount = 30   // amount of questions
+    document.querySelector(".score").innerHTML = result
+    document.querySelector(".score_percentage").innerHTML = Math.round(result / questionAmount * 100)
+}

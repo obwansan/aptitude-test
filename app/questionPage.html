@@ -1,9 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="js/userLogIn.js"></script>
+    <script>
+        let userEmail = getCookie('userEmail')
+        getUser(userEmail).then(function(user) {
+            if (!user.success || !isAuthorised(user.data)) {
+                window.location.replace("index.html")
+            }
+        })
+    </script>
     <meta charset="UTF-8">
-    <title>Title</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <title>Mayden Aptitude Test</title>
     <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <link href="css/questionPage.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" href="css/resultPage.css">
@@ -16,7 +25,6 @@
     <script src="js/checkAnswers.js" defer></script>
 </head>
 <body>
-
 <!--question number and time -->
 <div id="question_page">
     <div class="container">

@@ -9,7 +9,7 @@ function timer() {
     let minutes = Math.floor(timeLimit / 60);
     let seconds = Math.floor(timeLimit - minutes * 60);
 
-    document.querySelector(".timer").innerHTML = minutes + "m " + seconds + "s ";
+    document.querySelector("#timer").innerHTML = minutes + "m " + seconds + "s ";
     timeLimit--
     if (timeLimit < 0){
         clearInterval(interval)

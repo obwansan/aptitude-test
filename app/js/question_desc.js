@@ -1,5 +1,5 @@
 /**
- *  adding required description for each question block
+ *inserts the question type and the question description above the question
  *
  * @param counter - question number
  */

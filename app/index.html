@@ -5,11 +5,11 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <script src="js/handlebars-v4.0.11.js"></script>
     <script id="handle_bars" type="text/x-handlebars-template"></script>
     <script src="js/userLogIn.js" defer></script>
     <title>Login page</title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 </head>
 <body>
 <div class="container">
@@ -20,15 +20,11 @@
     <br>
     <form class="col-sm-4 col-sm-offset-4 form-horizontal" id="logInForm">
         <div class="form-group">
-            <div class="col-sm-12">
-                <input type="email" class="form-control" id="email" placeholder="Email">
-            </div>
+            <input type="email" class="form-control" id="email" placeholder="Email">
         </div>
         <p class="invalidLogin"></p>
         <div class="form-group">
-            <div class="col-sm-offset-5 col-sm-1">
-                <button type="submit" class="btn btn-default">Sign in</button>
-            </div>
+            <button type="submit" class="btn btn-default col-sm-offset-4 col-sm-4">Sign in</button>
         </div>
     </form>
 </div>

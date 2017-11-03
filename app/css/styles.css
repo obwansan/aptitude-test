@@ -6,4 +6,9 @@
       display: inline;
       margin: 10px; }
   .container img {
-width: 100%; }
+    width: 100%; }
+
+.logoContainer {
+  margin: 20px;
+  height: 53px;
+  float: right; }

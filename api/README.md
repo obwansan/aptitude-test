@@ -38,7 +38,7 @@ GET
 
 DELETE
 - Deletes a user.
-- Send user id of user to delete.
+- Send user id in the url like: /user/{id}
 - Returns result of user deletion.
 
 

@@ -125,9 +125,9 @@ $app->get('/user', function ($request, $response, $args) {
 
 });
 
-$app->delete('/user', function ($request, $response, $args) {
+$app->delete('/user/{id}', function ($request, $response, $args) {
     $data = ['success' => false, 'message' => 'An unexpected error occured.', 'data' => []];
-    $user = $request->getParsedBody();
+    $user = $args;
 
     if (!empty($user['id']) && is_numeric($user['id'])) {
         try {

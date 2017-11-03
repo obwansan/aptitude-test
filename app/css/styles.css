@@ -12,3 +12,11 @@
   margin: 20px;
   height: 53px;
   float: right; }
+
+.copyright {
+  position: fixed;
+  width: 100%;
+  height: 60px;
+  padding: 20px;
+  bottom: 0px;
+  background-color: #DDDDDD; }

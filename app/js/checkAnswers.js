@@ -65,12 +65,10 @@ document.querySelector('#finish').addEventListener('click', function(e) {
             document.querySelector('#result_page').style.display = 'block'
             displayResult(result.score)
         } else {
-            document.querySelector('#question_page').style.display = 'none'
-            document.querySelector('#result_page').style.display = 'none'
             let body = document.querySelector('body')
             let html = body.innerHTML
-            html += '<p>Please contact admin. Answers cannot be checked at present.</p>'
-            html += result.message
+            html += '<p class="error_message text-danger">Please contact admin. Answers cannot be checked at present.</p>'
+            html += '<p class="error_message text-danger">' + result.message + '</p>'
             body.innerHTML = html
         }
     })

@@ -31,26 +31,13 @@ async function getAnswers() {
 }
 
 /**
- * gets the value of a given cookie by name
- *
- * @param String name the name of the cookie
- *
- * @return String the value of the cookie
- */
-function getCookie(name) {
-    let value = "; " + document.cookie;
-    let parts = value.split("; " + name + "=");
-    if (parts.length == 2) return parts.pop().split(";").shift();
-}
-
-/**
  * gets answers the user provided from the DOM
  *
  * @return Object of users answers
  */
 function getUserAnswers() {
     let answers = {}
-    document.querySelectorAll('#questions .question .answers input:checked').forEach(function (input) {
+    document.querySelectorAll('#questions .question .answers input:checked').forEach(function(input) {
         let id = input.name.split("_")[1]
         answers[id] = input.value
     })

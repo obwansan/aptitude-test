@@ -67,8 +67,7 @@ document.querySelector('#finish').addEventListener('click', function(e) {
  * @param earnedPoints total amount of right questions
  */
 function displayResult(earnedPoints) {
-    let result = earnedPoints   // number of points
     const questionAmount = 30   // amount of questions
-    document.querySelector(".score").innerHTML = result
-    document.querySelector(".score_percentage").innerHTML = Math.round(result / questionAmount * 100)
+    document.querySelector(".score").innerHTML = earnedPoints
+    document.querySelector(".score_percentage").innerHTML = Math.round(earnedPoints / questionAmount * 100)
 }

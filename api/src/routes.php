@@ -48,7 +48,7 @@ $app->post('/user', function ($request, $response, $args) {
     return $response->withJson($data);
 });
 
-$app->put('/user', function ($request, $response, $args) {
+$app->post('/user/edit', function ($request, $response, $args) {
     $data = ['success' => false, 'message' => 'An unexpected error occured.', 'data' => []];
     $user = $request->getParsedBody();
 

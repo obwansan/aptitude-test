@@ -4,7 +4,7 @@
     <script src="js/userLogIn.js"></script>
     <script>
         let userEmail = getCookie('userEmail')
-        getUser(userEmail).then(function(user) {
+        getUser(userEmail).then(function (user) {
             if (!user.success || !isAuthorised(user.data)) {
                 window.location.replace("index.html")
             }
@@ -31,10 +31,9 @@
         <div class="row">
             <div class="col-md-2">
                 <h3>Question number</h3>
+                <h4></h4>
             </div>
-            <div class="col-md-8">
-            </div>
-            <div class="col-md-2">
+            <div class="col-md-offset-8 col-md-2">
                 <h3 class="timer"> 30m 00s </h3>
             </div>
         </div>

@@ -19,6 +19,7 @@
     <script src="js/questions.js" defer></script>
     <script src="js/question_desc.js" defer></script>
     <script src="js/questionNav.js" defer></script>
+    <script src="js/timer.js" defer></script>
 </head>
 <body>
 
@@ -30,24 +31,24 @@
             <h4></h4>
         </div>
         <div class="col-md-offset-8 col-md-2">
-            <h3> Time </h3>
+            <h3 id="timer"> 30m 00s </h3>
         </div>
     </div>
     <!--question body and nav-->
-        <div class="row">
-            <div class="col-md-2">
-                <button type="button" class="btn btn-info prev">Previous</button>
-            </div>
-            <div class="question-container col-md-8">
-                <form>
-                    <div id="questions"></div>
-                <button type="submit" class="btn btn-success finish">Finish</button>
-                </form>
-            </div>
-            <div class="col-md-2">
-                <button type="button" class="btn btn-info next">Next</button>
-            </div>
+    <div class="row">
+        <div class="col-md-2">
+            <button type="button" class="btn btn-info prev">Previous</button>
         </div>
+        <div class="question-container col-md-8">
+            <form>
+                <div id="questions"></div>
+                <button type="submit" class="btn btn-success finish">Finish</button>
+            </form>
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-info next">Next</button>
+        </div>
+    </div>
 </div>
 </body>
 </html>

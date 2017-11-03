@@ -36,9 +36,11 @@ GET
 - Send users email as a GET parameter using the key of `email`.
 - Returns user object.
 
-DELETE
+
+**/user/delete/{userID}**
+POST
 - Deletes a user.
-- Send user id in the url like: /user/{id}
+- Send user id in the url like: /user/delete/{id}
 - Returns result of user deletion.
 
 

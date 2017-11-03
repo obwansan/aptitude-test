@@ -125,7 +125,7 @@ $app->get('/user', function ($request, $response, $args) {
 
 });
 
-$app->delete('/user/{id}', function ($request, $response, $args) {
+$app->post('/user/delete/{id}', function ($request, $response, $args) {
     $data = ['success' => false, 'message' => 'An unexpected error occured.', 'data' => []];
     $user = $args;
 

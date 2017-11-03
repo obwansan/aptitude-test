@@ -7,14 +7,17 @@ async function checkAnswers() {
     let userAnswers = getUserAnswers()
     let userScore = 0
     let answers = await getAnswers()
-    answers = answers.data
-    answers.forEach(function(answerItem) {
-        if (answerItem.answer == userAnswers[answerItem.id]) {
-            userScore++
-        }
-    })
-    let result = {uid:getCookie('uid'), answers:userAnswers, score:userScore, time: getTimeForApi()}
-    return result
+    if (answers.success) {
+        answers = answers.data
+        answers.forEach(function (answerItem) {
+            if (answerItem.answer == userAnswers[answerItem.id]) {
+                userScore++
+            }
+        })
+        let result = {uid: getCookie('uid'), answers: userAnswers, score: userScore, time: getTimeForApi()}
+        return result
+    }
+    return answers
 }
 
 /**
@@ -23,7 +26,7 @@ async function checkAnswers() {
  * @return Promise - containing the correct answers
  */
 async function getAnswers() {
-    let data = await fetch("http://localhost:8080/answer")
+    let data = await fetch("http://localhost:8080/answer", {method: 'get'})
     return data.json()
 }
 
@@ -57,9 +60,19 @@ function getUserAnswers() {
 document.querySelector('#finish').addEventListener('click', function(e) {
     e.preventDefault()
     checkAnswers().then(function(result) {
-        document.querySelector('#question_page').style.display = 'none'
-        document.querySelector('#result_page').style.display = 'block'
-        displayResult(result.score)
+        if (result.score) {   // if successfully retrieved answers
+            document.querySelector('#question_page').style.display = 'none'
+            document.querySelector('#result_page').style.display = 'block'
+            displayResult(result.score)
+        } else {
+            document.querySelector('#question_page').style.display = 'none'
+            document.querySelector('#result_page').style.display = 'none'
+            let body = document.querySelector('body')
+            let html = body.innerHTML
+            html += '<p>Please contact admin. Answers cannot be checked at present.</p>'
+            html += result.message
+            body.innerHTML = html
+        }
     })
 })
 

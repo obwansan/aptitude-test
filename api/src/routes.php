@@ -48,7 +48,7 @@ $app->post('/user', function ($request, $response, $args) {
     return $response->withJson($data);
 });
 
-$app->put('/user', function ($request, $response, $args) {
+$app->post('/user/edit', function ($request, $response, $args) {
     $data = ['success' => false, 'message' => 'An unexpected error occured.', 'data' => []];
     $user = $request->getParsedBody();
 
@@ -125,9 +125,9 @@ $app->get('/user', function ($request, $response, $args) {
 
 });
 
-$app->delete('/user', function ($request, $response, $args) {
+$app->post('/user/delete/{id}', function ($request, $response, $args) {
     $data = ['success' => false, 'message' => 'An unexpected error occured.', 'data' => []];
-    $user = $request->getParsedBody();
+    $user = $args;
 
     if (!empty($user['id']) && is_numeric($user['id'])) {
         try {

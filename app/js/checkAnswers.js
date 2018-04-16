@@ -70,4 +70,5 @@ function displayResult(earnedPoints) {
     const questionAmount = 30   // amount of questions
     document.querySelector(".score").innerHTML = earnedPoints
     document.querySelector(".score_percentage").innerHTML = Math.round(earnedPoints / questionAmount * 100)
+    document.querySelector(".answered_questions").innerHTML = 'FOOOOO'
 }

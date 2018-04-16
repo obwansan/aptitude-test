@@ -15,15 +15,16 @@ async function checkAnswers() {
             if (answerItem.answer == userAnswers[answerItem.id]) {
                 userScore++
             }
+            if ("unanswered" == userAnswers[answerItem.id]) {
+                unanswered++
+            }
         })
         let result = {uid: getCookie('uid'), answers: userAnswers, score: userScore, unansweredQuestions: unanswered, time: getTimeForApi()}
-        console.log(result)
         return result
     }
     return answers
 }
 
-console.log(checkAnswers())
 /**
  * gets correct answers from api
  *
@@ -50,7 +51,6 @@ function getUserAnswers() {
         let id = input.name.split("_")[1]
         answers[id] = input.value   
     })
-    console.log(answers)
     return answers
 }
 
@@ -60,7 +60,7 @@ document.querySelector('#finish').addEventListener('click', function(e) {
         if (result.score || result.score === 0) {   // if successfully retrieved answers
             document.querySelector('#question_page').style.display = 'none'
             document.querySelector('#result_page').style.display = 'block'
-            displayResult(result.score)
+            displayResult(result.score, result.unansweredQuestions)
         } else {
             let body = document.querySelector('body')
             let html = body.innerHTML
@@ -76,7 +76,7 @@ document.querySelector('#finish').addEventListener('click', function(e) {
  *
  * @param earnedPoints total amount of right questions
  */
-function displayResult(earnedPoints) {
+function displayResult(earnedPoints, unansweredQuestions) {
     const questionAmount = 30   // amount of questions
     document.querySelector(".score").innerHTML = earnedPoints
     document.querySelector(".score_percentage").innerHTML = Math.round(earnedPoints / questionAmount * 100)

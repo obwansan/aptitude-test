@@ -3,9 +3,11 @@
 ### Server
 
 - Clone this Repo
+- cd into api and run `composer install`
+- Install the aptitude-test.sql file from /api/db into your vagrant box database named `aptitude-test`
 - cd into the api/public folder
 - Run: `php -S localhost:8080`
-- Install the aptitude-test.sql file from /api/db into your vagrant box database
+
 
 ### Composer
 - from the api file run composer update

@@ -8,6 +8,7 @@ async function checkAnswers() {
     let userScore = 0
     let unanswered = 0
     let answers = await getAnswers()
+
     if (answers.success) {
         answers = answers.data
         answers.forEach(function (answerItem) {
@@ -39,10 +40,15 @@ async function getAnswers() {
  * @return Object of users answers
  */
 function getUserAnswers() {
+    let checkedInputs = document.querySelectorAll('#questions .question .answers input:checked')
     let answers = {}
-    document.querySelectorAll('#questions .question .answers input:checked').forEach(function(input) {
+    for (let i = 1; i <= 30; i++) {
+        answers[i] = 'unanswered'
+    }
+    
+    checkedInputs.forEach(function(input) {
         let id = input.name.split("_")[1]
-        answers[id] = input.value
+        answers[id] = input.value   
     })
     console.log(answers)
     return answers
@@ -51,7 +57,7 @@ function getUserAnswers() {
 document.querySelector('#finish').addEventListener('click', function(e) {
     e.preventDefault()
     checkAnswers().then(function(result) {
-        if (result.score) {   // if successfully retrieved answers
+        if (result.score || result.score === 0) {   // if successfully retrieved answers
             document.querySelector('#question_page').style.display = 'none'
             document.querySelector('#result_page').style.display = 'block'
             displayResult(result.score)

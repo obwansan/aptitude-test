@@ -6,6 +6,7 @@
 async function checkAnswers() {
     let userAnswers = getUserAnswers()
     let userScore = 0
+    let unanswered = 0
     let answers = await getAnswers()
     if (answers.success) {
         answers = answers.data
@@ -14,12 +15,14 @@ async function checkAnswers() {
                 userScore++
             }
         })
-        let result = {uid: getCookie('uid'), answers: userAnswers, score: userScore, time: getTimeForApi()}
+        let result = {uid: getCookie('uid'), answers: userAnswers, score: userScore, unansweredQuestions: unanswered, time: getTimeForApi()}
+        console.log(result)
         return result
     }
     return answers
 }
 
+console.log(checkAnswers())
 /**
  * gets correct answers from api
  *
@@ -41,6 +44,7 @@ function getUserAnswers() {
         let id = input.name.split("_")[1]
         answers[id] = input.value
     })
+    console.log(answers)
     return answers
 }
 

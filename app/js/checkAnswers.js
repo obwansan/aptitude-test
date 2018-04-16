@@ -7,7 +7,7 @@ async function checkAnswers() {
     let userAnswers = getUserAnswers()
     let userScore = 0
     let answers = await getAnswers()
-    console.log(answers)
+
     if (answers.success) {
         answers = answers.data
         answers.forEach(function (answerItem) {
@@ -15,8 +15,8 @@ async function checkAnswers() {
                 userScore++
             }
         })
-        console.log(userScore)
         let result = {uid: getCookie('uid'), answers: userAnswers, score: userScore, time: getTimeForApi()}
+        
         return result
     }
     return answers
@@ -50,8 +50,7 @@ function getUserAnswers() {
         
         
     })
-    console.log(checkedInputs)
-    console.log(answers)
+
     return answers
 }
 

@@ -1,17 +1,13 @@
 # Aptitude test REST API
 
-### Server
+### Local setup
 
 - Clone this Repo
-- cd into api and run `composer install`
+- cd into api and run `composer install` or `php composer.phar install` if no composer installed
 - Install the aptitude-test.sql file from /api/db into your vagrant box database named `aptitude-test`
 - cd into the api/public folder
-- Run: `php -S localhost:8080`
+- Run: `php -S localhost:8080` - DO NOT CLOSE THIS TAB OR TURN THE SERVER OFF
 
-
-### Composer
-- from the api file run composer update
-- generate a new token from the url provided
 
 ### Routes
 - for local development use localhost:8080/whatYouRequire as your ajax URL

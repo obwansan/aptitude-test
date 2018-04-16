@@ -7,6 +7,7 @@ async function checkAnswers() {
     let userAnswers = getUserAnswers()
     let userScore = 0
     let answers = await getAnswers()
+    console.log(answers)
     if (answers.success) {
         answers = answers.data
         answers.forEach(function (answerItem) {
@@ -14,6 +15,7 @@ async function checkAnswers() {
                 userScore++
             }
         })
+        console.log(userScore)
         let result = {uid: getCookie('uid'), answers: userAnswers, score: userScore, time: getTimeForApi()}
         return result
     }
@@ -37,17 +39,26 @@ async function getAnswers() {
  */
 function getUserAnswers() {
     let answers = {}
-    document.querySelectorAll('#questions .question .answers input:checked').forEach(function(input) {
+    for (let i = 1; i <= 30; i++) {
+        answers[i] = 'unanswered'
+    }
+
+    let checkedInputs = document.querySelectorAll('#questions .question .answers input:checked')
+    checkedInputs.forEach(function(input) {
         let id = input.name.split("_")[1]
         answers[id] = input.value
+        
+        
     })
+    console.log(checkedInputs)
+    console.log(answers)
     return answers
 }
 
 document.querySelector('#finish').addEventListener('click', function(e) {
     e.preventDefault()
     checkAnswers().then(function(result) {
-        if (result.score) {   // if successfully retrieved answers
+        if (result.score || result.score === 0) {   // if successfully retrieved answers
             document.querySelector('#question_page').style.display = 'none'
             document.querySelector('#result_page').style.display = 'block'
             displayResult(result.score)

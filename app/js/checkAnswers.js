@@ -23,7 +23,6 @@ async function checkAnswers() {
             score: userScore,
             time: getTimeForApi()
         }
-
         return result
     }
     return answers
@@ -88,7 +87,6 @@ async function getUnanswered() {
     let userAnswersArray = Object.values(userAnswers)
     let unanswered = 0
 
-    //foreach
     userAnswersArray.forEach(function(answerItem) {
             if (answerItem == "unanswered") {
                 unanswered++

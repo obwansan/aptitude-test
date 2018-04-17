@@ -23,7 +23,7 @@ let objectX =  {
 console.log(objectX)
 
 /**
- * fills handlebars template by getting the user data from the api and inserts into the user_list div
+ * fills handlebars template by passing in object and inserts into the score_list div
  *
  * @param HBTemplate the handlebars template
  * @param ObjFunction the function that creates an object of all fields required in scores page

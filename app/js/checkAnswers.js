@@ -92,8 +92,7 @@ function getAnswered(questionAmount) {
                 unanswered++
             }
         })
-    let answered = questionAmount - unanswered
-    return answered
+    return questionAmount - unanswered
 }
 
 /**
@@ -104,8 +103,7 @@ function getAnswered(questionAmount) {
  * @return Integer percentage of user score
  */
 function getPercentResult(userScore) {
-    let percentage = Math.round(userScore / questionAmount * 100)
-    return percentage
+    return Math.round(userScore / questionAmount * 100)
 }
 
 /**

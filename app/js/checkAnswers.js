@@ -3,6 +3,8 @@ const questionAmount = 30   // amount of questions
 /**
  * checks the users answers against api answers
  *
+ * @param questionAmount total number of questions
+ *
  * @return Promise - containing the result object ready for the api
  */
 async function checkAnswers(questionAmount) {
@@ -40,6 +42,8 @@ async function getAnswers() {
 
 /**
  * gets answers the user provided from the DOM
+ *
+ * @param questionAmount total number of questions
  *
  * @return Object of users answers
  */
@@ -80,6 +84,8 @@ document.querySelector('#finish').addEventListener('click', function(e) {
 /**
  * gets number of answered questions
  *
+ * @param questionAmount total number of questions
+ *
  * @return Integer number of answered questions
  */
 function getAnswered(questionAmount) {
@@ -99,6 +105,7 @@ function getAnswered(questionAmount) {
  * gets percentage of user score
  *
  * @param userScore user score
+ * @param questionAmount total number of questions
  *
  * @return Integer percentage of user score
  */
@@ -110,6 +117,8 @@ function getPercentResult(userScore, questionAmount) {
  * showing and calculating result in points and percents
  *
  * @param earnedPoints total amount of right questions
+ * @param earnedPercentage percentage of total number of right questions
+ * @param answeredQuestions total number of questions that have an answer
  */
 function displayResult(earnedPoints, earnedPercentage, answeredQuestions) {
     document.querySelector(".score").innerHTML = earnedPoints

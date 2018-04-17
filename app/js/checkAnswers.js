@@ -6,7 +6,7 @@ const questionAmount = 30   // amount of questions
  * @return Promise - containing the result object ready for the api
  */
 async function checkAnswers() {
-    let userAnswers = getUserAnswers()
+    let userAnswers = getUserAnswers(questionAmount)
     let userScore = 0
     let answers = await getAnswers()
 
@@ -43,10 +43,10 @@ async function getAnswers() {
  *
  * @return Object of users answers
  */
-function getUserAnswers() {
+function getUserAnswers(questionAmount) {
     let checkedInputs = document.querySelectorAll('#questions .question .answers input:checked')
     let answers = {}
-    for (let i = 1; i <= 30; i++) {
+    for (let i = 1; i <= questionAmount; i++) {
         answers[i] = 'unanswered'
     }
     
@@ -64,7 +64,7 @@ document.querySelector('#finish').addEventListener('click', function(e) {
             document.querySelector('#question_page').style.display = 'none'
             document.querySelector('#result_page').style.display = 'block'
             let percentResult = getPercentResult(result.score)
-            let answered = getAnswered()
+            let answered = getAnswered(questionAmount)
             displayResult(result.score, percentResult, answered)
         } else {
             let body = document.querySelector('body')
@@ -82,8 +82,8 @@ document.querySelector('#finish').addEventListener('click', function(e) {
  *
  * @return Integer number of answered questions
  */
-function getAnswered() {
-    let userAnswers = getUserAnswers()
+function getAnswered(questionAmount) {
+    let userAnswers = getUserAnswers(questionAmount)
     let userAnswersArray = Object.values(userAnswers)
     let unanswered = 0
 

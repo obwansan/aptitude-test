@@ -64,8 +64,8 @@ document.querySelector('#finish').addEventListener('click', function(e) {
             document.querySelector('#question_page').style.display = 'none'
             document.querySelector('#result_page').style.display = 'block'
             let percentResult = getPercentResult(result.score)
-            let unanswered = getUnanswered(questionAmount)
-            displayResult(result.score, percentResult, unanswered)
+            let answered = getAnswered()
+            displayResult(result.score, percentResult, answered)
         } else {
             let body = document.querySelector('body')
             let html = body.innerHTML
@@ -78,11 +78,11 @@ document.querySelector('#finish').addEventListener('click', function(e) {
 
 
 /**
- * gets number of unanswered questions
+ * gets number of answered questions
  *
- * @return Integer number of unanswered questions
+ * @return Integer number of answered questions
  */
-async function getUnanswered() {
+function getAnswered() {
     let userAnswers = getUserAnswers()  // answers entered by user
     let userAnswersArray = Object.values(userAnswers)
     let unanswered = 0
@@ -92,7 +92,8 @@ async function getUnanswered() {
                 unanswered++
             }
         })
-    return unanswered
+    let answered = questionAmount - unanswered
+    return answered
 }
 
 /**
@@ -112,9 +113,8 @@ function getPercentResult(userScore) {
  *
  * @param earnedPoints total amount of right questions
  */
-function displayResult(earnedPoints, earnedPercentage, unansweredQuestions) {
+function displayResult(earnedPoints, earnedPercentage, answeredQuestions) {
     document.querySelector(".score").innerHTML = earnedPoints
-    // display earnedPercentage
-    // display unansweredQuestions
+    document.querySelector(".answered_questions").innerHTML = answeredQuestions
     document.querySelector(".score_percentage").innerHTML = earnedPercentage
 }

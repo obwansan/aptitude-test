@@ -62,12 +62,14 @@ function getUserAnswers(questionAmount) {
 
 document.querySelector('#finish').addEventListener('click', function(e) {
     e.preventDefault()
-    checkAnswers(questionAmount).then(function(result) {
+    const userAnswers= getUserAnswers(questionAmount)
+
+    checkAnswers(userAnswers).then(function(result) {
         if (result.score || result.score === 0) {
             document.querySelector('#question_page').style.display = 'none'
             document.querySelector('#result_page').style.display = 'block'
             let percentResult = getPercentResult(result.score, questionAmount)
-            let answered = getAnswered(questionAmount)
+            let answered = getAnswered(userAnswers, questionAmount)
             displayResult(result.score, percentResult, answered)
         } else {
             let body = document.querySelector('body')

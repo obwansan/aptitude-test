@@ -6,9 +6,9 @@ const questionAmount = 30   // amount of questions
  * @return Promise - containing the result object ready for the api
  */
 async function checkAnswers() {
-    let userAnswers = getUserAnswers() // answers entered by user
+    let userAnswers = getUserAnswers()
     let userScore = 0
-    let answers = await getAnswers() // answers from db
+    let answers = await getAnswers()
 
     if (answers.success) {
         answers = answers.data
@@ -60,7 +60,7 @@ function getUserAnswers() {
 document.querySelector('#finish').addEventListener('click', function(e) {
     e.preventDefault()
     checkAnswers().then(function(result) {
-        if (result.score || result.score === 0) {   // if successfully retrieved answers
+        if (result.score || result.score === 0) {
             document.querySelector('#question_page').style.display = 'none'
             document.querySelector('#result_page').style.display = 'block'
             let percentResult = getPercentResult(result.score)
@@ -83,7 +83,7 @@ document.querySelector('#finish').addEventListener('click', function(e) {
  * @return Integer number of answered questions
  */
 function getAnswered() {
-    let userAnswers = getUserAnswers()  // answers entered by user
+    let userAnswers = getUserAnswers()
     let userAnswersArray = Object.values(userAnswers)
     let unanswered = 0
 

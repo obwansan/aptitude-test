@@ -1,26 +1,11 @@
 
-let objectX =  {
-    "success": true,
-    "message": "Successfully retrieved results.",
-    "data": [
-        {
-            "id": "1",
-            "answers": "\"{\\\"1\\\":\\\"1\\\", \\\"2\\\":\\\"5\\\"}\"",
-            "score": "2",
-            "time": "30.00",
-            "dateCreated": "2017-07-20 10:41:43"
-        },
-        {
-            "id": "3",
-            "answers": "\"{\\\"1\\\":\\\"1\\\", \\\"2\\\":\\\"5\\\"}\"",
-            "score": "10",
-            "time": "25.00",
-            "dateCreated": "2018-04-17 12:08:33"
-        }
-    ]
-}
+let usersWithResults = userRenderObject()
 
-console.log(objectX)
+const Bob = usersWithResults.then(function (value) {
+    console.log(value)
+    return value
+})
+
 
 /**
  * fills handlebars template by passing in object and inserts into the score_list div
@@ -48,8 +33,9 @@ function fillScoreTable(HBTemplate, ObjFunction) {
  * get the handlebars template and use this to display the scores
  */
 function updateScoreTable() {
+    console.log(Bob)
     getTemplateAjax('js/templates/scoreTable.hbs').then(function (HBTemplate) {
-        fillScoreTable(HBTemplate, objectX)
+        fillScoreTable(HBTemplate, Bob)
     })
 }
 

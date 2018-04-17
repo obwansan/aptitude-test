@@ -83,14 +83,27 @@ body {
   }
 
   .percentage {
+     @extend .points;
+
+     .percentage_label {
+       @extend .points_label;
+     }
+
+     .percentage_number {
+       @extend .points_number;
+     }
+   }
+
+  .answered {
     @extend .points;
 
-    .percentage_label {
+    .answered_label {
       @extend .points_label;
     }
 
-    .percentage_number {
+    .answered_number {
       @extend .points_number;
     }
   }
+
 }

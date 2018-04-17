@@ -113,7 +113,6 @@ function getPercentResult(userScore) {
  * @param earnedPoints total amount of right questions
  */
 function displayResult(earnedPoints, earnedPercentage, unansweredQuestions) {
-
     document.querySelector(".score").innerHTML = earnedPoints
     // display earnedPercentage
     // display unansweredQuestions

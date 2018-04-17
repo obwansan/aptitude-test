@@ -41,7 +41,6 @@ function getUserAnswers() {
         let id = input.name.split("_")[1]
         answers[id] = input.value
     })
-    console.log(answers)
     return answers
 }
 

@@ -1,4 +1,5 @@
 const questionAmount = 30   // amount of questions
+const userAnswers= getUserAnswers(questionAmount)
 
 /**
  * checks the users answers against api answers

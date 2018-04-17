@@ -1,15 +1,13 @@
 const questionAmount = 30   // amount of questions
-const userAnswers= getUserAnswers(questionAmount)
 
 /**
  * checks the users answers against api answers
  *
- * @param questionAmount total number of questions
+ * @param userAnswers answers provided by user
  *
  * @return Promise - containing the result object ready for the api
  */
-async function checkAnswers(questionAmount) {
-    let userAnswers = getUserAnswers(questionAmount)
+async function checkAnswers(userAnswers) {
     let userScore = 0
     let answers = await getAnswers()
 
@@ -85,16 +83,16 @@ document.querySelector('#finish').addEventListener('click', function(e) {
 /**
  * gets number of answered questions
  *
+ * @param userAnswers answers provided by user
  * @param questionAmount total number of questions
  *
  * @return Integer number of answered questions
  */
-function getAnswered(questionAmount) {
-    let userAnswers = getUserAnswers(questionAmount)
+function getAnswered(userAnswers, questionAmount) {
     let userAnswersArray = Object.values(userAnswers)
     let unanswered = 0
-
     userAnswersArray.forEach(function(answerItem) {
+
             if (answerItem == "unanswered") {
                 unanswered++
             }

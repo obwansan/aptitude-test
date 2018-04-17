@@ -5,7 +5,7 @@ const questionAmount = 30   // amount of questions
  *
  * @return Promise - containing the result object ready for the api
  */
-async function checkAnswers() {
+async function checkAnswers(questionAmount) {
     let userAnswers = getUserAnswers(questionAmount)
     let userScore = 0
     let answers = await getAnswers()
@@ -59,11 +59,11 @@ function getUserAnswers(questionAmount) {
 
 document.querySelector('#finish').addEventListener('click', function(e) {
     e.preventDefault()
-    checkAnswers().then(function(result) {
+    checkAnswers(questionAmount).then(function(result) {
         if (result.score || result.score === 0) {
             document.querySelector('#question_page').style.display = 'none'
             document.querySelector('#result_page').style.display = 'block'
-            let percentResult = getPercentResult(result.score)
+            let percentResult = getPercentResult(result.score, questionAmount)
             let answered = getAnswered(questionAmount)
             displayResult(result.score, percentResult, answered)
         } else {
@@ -102,7 +102,7 @@ function getAnswered(questionAmount) {
  *
  * @return Integer percentage of user score
  */
-function getPercentResult(userScore) {
+function getPercentResult(userScore, questionAmount) {
     return Math.round(userScore / questionAmount * 100)
 }
 

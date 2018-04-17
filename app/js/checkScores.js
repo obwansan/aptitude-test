@@ -1,3 +1,5 @@
+const numberOfQuestions = 30
+
 /**
  * gets all users score results from api
  *
@@ -12,11 +14,10 @@ async function getScores() {
             return data
         })
 
-    let resultsArr = scoreObj.data
-    resultsArr.forEach(function (element) {
-        element.percent = (element.score / 30 * 100).toFixed(2)
+    scoreObj.data.forEach(function (element) {
+        element.percent = (element.score / numberOfQuestions * 100).toFixed(2)
     })
-    return resultsArr
+    return scoreObj.data
 }
 
 //this can be removed at a later date...

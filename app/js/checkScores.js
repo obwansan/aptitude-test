@@ -15,6 +15,3 @@ async function getScores() {
 }
 
 getScores();
-
-
-//

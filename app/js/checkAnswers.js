@@ -1,13 +1,14 @@
+const questionAmount = 30   // amount of questions
+
 /**
  * checks the users answers against api answers
  *
  * @return Promise - containing the result object ready for the api
  */
 async function checkAnswers() {
-    let userAnswers = getUserAnswers()
+    let userAnswers = getUserAnswers() // answers entered by user
     let userScore = 0
-    let unanswered = 0
-    let answers = await getAnswers()
+    let answers = await getAnswers() // answers from db
 
     if (answers.success) {
         answers = answers.data
@@ -15,11 +16,14 @@ async function checkAnswers() {
             if (answerItem.answer == userAnswers[answerItem.id]) {
                 userScore++
             }
-            if ("unanswered" == userAnswers[answerItem.id]) {
-                unanswered++
-            }
         })
-        let result = {uid: getCookie('uid'), answers: userAnswers, score: userScore, unansweredQuestions: unanswered, time: getTimeForApi()}
+        let result = {
+            uid: getCookie('uid'),
+            answers: userAnswers,
+            score: userScore,
+            time: getTimeForApi()
+        }
+
         return result
     }
     return answers
@@ -60,7 +64,9 @@ document.querySelector('#finish').addEventListener('click', function(e) {
         if (result.score || result.score === 0) {   // if successfully retrieved answers
             document.querySelector('#question_page').style.display = 'none'
             document.querySelector('#result_page').style.display = 'block'
-            displayResult(result.score, result.unansweredQuestions)
+            let percentResult = getPercentResult(result.score)
+            let unanswered = getUnanswered(questionAmount)
+            displayResult(result.score, percentResult, unanswered)
         } else {
             let body = document.querySelector('body')
             let html = body.innerHTML
@@ -71,13 +77,47 @@ document.querySelector('#finish').addEventListener('click', function(e) {
     })
 })
 
+
+/**
+ * gets number of unanswered questions
+ *
+ * @return Integer number of unanswered questions
+ */
+async function getUnanswered() {
+    let userAnswers = getUserAnswers()  // answers entered by user
+    let userAnswersArray = Object.values(userAnswers)
+    let unanswered = 0
+
+    //foreach
+    userAnswersArray.forEach(function(answerItem) {
+            if (answerItem == "unanswered") {
+                unanswered++
+            }
+        })
+    return unanswered
+}
+
+/**
+ * gets percentage of user score
+ *
+ * @param userScore user score
+ *
+ * @return Integer percentage of user score
+ */
+function getPercentResult(userScore) {
+    let percentage = Math.round(userScore / questionAmount * 100)
+    return percentage
+}
+
 /**
  * showing and calculating result in points and percents
  *
  * @param earnedPoints total amount of right questions
  */
-function displayResult(earnedPoints, unansweredQuestions) {
-    const questionAmount = 30   // amount of questions
+function displayResult(earnedPoints, earnedPercentage, unansweredQuestions) {
+
     document.querySelector(".score").innerHTML = earnedPoints
-    document.querySelector(".score_percentage").innerHTML = Math.round(earnedPoints / questionAmount * 100)
+    // display earnedPercentage
+    // display unansweredQuestions
+    document.querySelector(".score_percentage").innerHTML = earnedPercentage
 }

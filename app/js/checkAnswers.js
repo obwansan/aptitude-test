@@ -7,6 +7,7 @@ async function checkAnswers() {
     let userAnswers = getUserAnswers()
     let userScore = 0
     let answers = await getAnswers()
+    console.log(answers)
     if (answers.success) {
         answers = answers.data
         answers.forEach(function (answerItem) {
@@ -41,6 +42,7 @@ function getUserAnswers() {
         let id = input.name.split("_")[1]
         answers[id] = input.value
     })
+    console.log(answers)
     return answers
 }
 

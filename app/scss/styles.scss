@@ -2,9 +2,18 @@
   text-align: center;
 
   .user_list {
-    height: 500px;
+    padding: 20px;
 
     .user_item p {
+      display: inline;
+      margin: 10px;
+    }
+  }
+
+  .score_list {
+    padding: 20px;
+
+    .score_item p {
       display: inline;
       margin: 10px;
     }

@@ -50,7 +50,7 @@ async function getNameAndEmail() {
  *
  * @return Promise - containing the user info and user results
  */
-async function userRenderObject () {
+async function createUserObject () {
     let scores = await applyPercent()
     let users = await getNameAndEmail()
 

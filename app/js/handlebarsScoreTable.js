@@ -7,7 +7,6 @@ function updateScoreTable() {
     let userResults = createUserObject()
 
     userResults.then(function (value) {
-        value = {data: value}
         getTemplateAjax('js/templates/scoreTable.hbs').then(function (HBTemplate) {
             fillScoreTable(HBTemplate, value)
         })
@@ -26,7 +25,7 @@ function fillScoreTable(HBTemplate, ObjToPass) {
     let score_list = document.querySelector(".score_list")
     score_list.innerHTML = ""
 
-    if (ObjToPass) {
+    if (ObjToPass.success) {
         let html = template(ObjToPass)
         score_list.innerHTML += html
     } else {

@@ -70,7 +70,11 @@ async function createUserObject () {
             }
         })
     })
-    return userDisplayArray
+
+    userDisplayObj = {data: userDisplayArray}
+    userDisplayObj.success = true
+
+    return userDisplayObj
 }
 
 // userRenderObject()

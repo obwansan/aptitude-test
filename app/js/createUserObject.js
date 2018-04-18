@@ -1,22 +1,20 @@
 const numberOfQuestions = 30
 
 /**
- * gets all users score results from api
+ * gets all users score results from api and add percentage values
  *
- * @return Object - containing the score results
+ * @return Array - containing the score results with percentage
  */
 async function applyPercent() {
-    let scoreObj = await fetch("http://localhost:8080/result", {method: 'get'})
+    let scoreArr = await fetch("http://localhost:8080/result", {method: 'get'})
         .then(function (data) {
             return data.json()
         })
-        .then(function (data) {
-            return data
-        })
-    scoreObj.data.forEach(function (element) {
-        element.percent = (element.score / numberOfQuestions * 100).toFixed(2)
+
+    scoreArr.data.forEach(function (score) {
+        score.percent = (score.score / numberOfQuestions * 100).toFixed(2)
     })
-    return scoreObj.data
+    return scoreArr.data
 }
 
 /**
@@ -25,36 +23,33 @@ async function applyPercent() {
  * @return Array - containing the user info (Name and Email)
  */
 async function getNameAndEmail() {
-    let userObj = await fetch("http://localhost:8080/user", {method: 'get'})
+    let users = await fetch("http://localhost:8080/user", {method: 'get'})
         .then(function (data) {
             return data.json()
         })
-        .then(function (data) {
-            return data
-        })
 
-    let userArray = []
-    userObj.data.forEach(function(element) {
+    let usersArray = []
+    users.data.forEach(function(user) {
         let obj = {}
-        let {id, email, name} = element
+        let {id, email, name} = user
         obj['id'] = id
         obj['name'] = name
         obj['email'] = email
-        userArray.push(obj)
+        usersArray.push(obj)
     })
-    return userArray
+    return usersArray
 }
 
 /**
- * combines user info into the result object
+ * combines user info (name and email) and result scores into the a new object
  *
- * @return Promise - containing the user info and user results
+ * @return Object - containing the user info and user results including percentage
  */
-async function createUserObject () {
+async function createUsersObject () {
     let scores = await applyPercent()
     let users = await getNameAndEmail()
-
     let userDisplayArray = []
+
     scores.forEach(function(score) {
         users.forEach(function(user) {
             if (score.id === user.id ) {
@@ -71,7 +66,5 @@ async function createUserObject () {
         })
     })
 
-    let userDisplayObj = {data: userDisplayArray}
-    userDisplayObj.success = true
-    return userDisplayObj
+    return {success: true, data: userDisplayArray}
 }

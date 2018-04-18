@@ -24,8 +24,10 @@ async function checkAnswers(userAnswers) {
             score: userScore,
             time: getTimeForApi()
         }
+        console.log(result)
         return result
     }
+    console.log(answers)
     return answers
 }
 

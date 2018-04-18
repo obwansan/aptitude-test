@@ -3,7 +3,7 @@ const numberOfQuestions = 30
 /**
  * gets all users score results from api
  *
- * @return Promise - containing the score results
+ * @return Object - containing the score results
  */
 async function applyPercent() {
     let scoreObj = await fetch("http://localhost:8080/result", {method: 'get'})
@@ -20,9 +20,9 @@ async function applyPercent() {
 }
 
 /**
- * gets all users name and email from api
+ * gets all users name and email from API
  *
- * @return Promise - containing the user info
+ * @return Array - containing the user info (Name and Email)
  */
 async function getNameAndEmail() {
     let userObj = await fetch("http://localhost:8080/user", {method: 'get'})
@@ -71,10 +71,7 @@ async function createUserObject () {
         })
     })
 
-    userDisplayObj = {data: userDisplayArray}
+    let userDisplayObj = {data: userDisplayArray}
     userDisplayObj.success = true
-
     return userDisplayObj
 }
-
-// userRenderObject()

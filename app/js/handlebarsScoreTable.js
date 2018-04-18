@@ -24,7 +24,7 @@ function fillScoreTable(HBTemplate, userInfo) {
 
     score_list.innerHTML = ""
 
-    if (userInfo.success) {
+    if (userInfo.success === true) {
         let html = template(userInfo)
         score_list.innerHTML += html
     } else {

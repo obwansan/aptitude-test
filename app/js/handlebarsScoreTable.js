@@ -1,14 +1,13 @@
 
 /**
- * get the handlebars template and use this to display the scores
+ * get the handlebars template (scoreTable.hbs) and add userInfo (Email, Name and Scores) to the template
  */
 function updateScoreTable() {
+    let users = createUsersObject()
 
-    let userResults = createUserObject()
-
-    userResults.then(function (value) {
+    users.then(function (userInfo) {
         getTemplateAjax('js/templates/scoreTable.hbs').then(function (HBTemplate) {
-            fillScoreTable(HBTemplate, value)
+            fillScoreTable(HBTemplate, userInfo)
         })
     })
 }
@@ -19,14 +18,14 @@ function updateScoreTable() {
  * @param HBTemplate the handlebars template
  * @param ObjFunction the function that creates an object of all fields required in scores page
  */
-function fillScoreTable(HBTemplate, ObjToPass) {
+function fillScoreTable(HBTemplate, userInfo) {
     let template = Handlebars.compile(HBTemplate)
-
     let score_list = document.querySelector(".score_list")
+
     score_list.innerHTML = ""
 
-    if (ObjToPass.success) {
-        let html = template(ObjToPass)
+    if (userInfo.success) {
+        let html = template(userInfo)
         score_list.innerHTML += html
     } else {
         score_list.innerHTML = "Please contact Admin, user list unavailable"

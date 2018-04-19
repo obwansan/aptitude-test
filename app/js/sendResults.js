@@ -1,24 +1,9 @@
 
-
-// /**
-//  * gets all users name and email from API
-//  *
-//  * @return Array - containing the user info (Name and Email)
-//  */
-// async function submitToAPI() {
-//     let responseObj = await fetch("http://localhost:8080/answer", {
-//         method: 'post',
-//         data: {'uid':'1', 'answers': {'1': '4', '2': '3'}, 'score':'24', 'time':'29.55'}
-//         })
-//         .then(function (data) {
-//             return data.json()
-//         })
-//
-//     let booleanResponse = responseObj.success
-//     return booleanResponse
-// }
-
-
+/**
+ * assigning user message depending on API response Object
+ *
+ * @return string - either success message or warning message
+ */
 function handleResponseFromAPI (response) {
     let messageToTestTaker = ""
 

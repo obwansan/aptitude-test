@@ -75,15 +75,13 @@ document.querySelector('#finish').addEventListener('click', function(e) {
             let answered = getAnswered(userAnswers, questionAmount)
             displayResult(result.score, percentResult, answered)
 
-            let body = document.querySelector('body')
             let messageToUser = handleResponseFromAPI(response)
-            body.innerHTML += '<p class="error_message text-danger">' + messageToUser +'</p>'
+            document.querySelector('body').innerHTML += '<p class="error_message text-danger">' + messageToUser +'</p>'
 
         } else {
             let body = document.querySelector('body')
             let html = body.innerHTML
             html += '<p class="error_message text-danger">Please contact admin. Answers cannot be checked at present.</p>'
-            // html += '<p class="error_message text-danger">' + result.message + '</p>'
             body.innerHTML = html
         }
     })

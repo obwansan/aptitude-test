@@ -19,10 +19,10 @@ async function checkAnswers(userAnswers) {
             }
         })
         let result = {
-            uid: getCookie('uid'),
+            uid: parseInt(getCookie('uid'), 10),
             answers: userAnswers,
             score: userScore,
-            time: getTimeForApi()
+            time: parseFloat(getTimeForApi()),
         }
         return result
     }
@@ -64,20 +64,20 @@ document.querySelector('#finish').addEventListener('click', function(e) {
     e.preventDefault()
     const userAnswers= getUserAnswers(questionAmount)
 
-
-
     checkAnswers(userAnswers).then(function(result) {
 
         if (result.score || result.score === 0) {
             document.querySelector('#question_page').style.display = 'none'
             document.querySelector('#result_page').style.display = 'block'
+
             let percentResult = getPercentResult(result.score, questionAmount)
             let answered = getAnswered(userAnswers, questionAmount)
+
             displayResult(result.score, percentResult, answered)
+            sendUserResults(result)
 
             let messageToUser = handleResponseFromAPI(response)
             document.querySelector('body').innerHTML += '<p class="error_message text-danger">' + messageToUser +'</p>'
-
         } else {
             let body = document.querySelector('body')
             let html = body.innerHTML

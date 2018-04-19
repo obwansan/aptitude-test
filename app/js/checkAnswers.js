@@ -65,14 +65,14 @@ document.querySelector('#finish').addEventListener('click',  function(e) {
     const userAnswers= getUserAnswers(questionAmount)
 
     checkAnswers(userAnswers).then(function(result) {
+        let percentResult
+        let answered
 
         if (result.score || result.score === 0) {
             document.querySelector('#question_page').style.display = 'none'
             document.querySelector('#result_page').style.display = 'block'
-
-            let percentResult = getPercentResult(result.score, questionAmount)
-            let answered = getAnswered(userAnswers, questionAmount)
-
+            percentResult = getPercentResult(result.score, questionAmount)
+            answered = getAnswered(userAnswers, questionAmount)
             displayResult(result.score, percentResult, answered)
             handleResponseFromAPI(sendUserResults(result))
 

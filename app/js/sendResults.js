@@ -1,3 +1,9 @@
+
+/**
+ * send user results to be submitted to the db
+ *
+ * @return object - user results
+ */
 function sendUserResults(userResults) {
    let userResultsForm = jsonToFormData(userResults)
 
@@ -23,7 +29,7 @@ function sendUserResults(userResults) {
 /**
  * assigning user message depending on API response Object
  *
- * @return string - either success message or warning message
+ * @param promise -  response from resultsPost
  */
 async function handleResponseFromAPI (response) {
     let messageToTestTaker = ""
@@ -37,21 +43,5 @@ async function handleResponseFromAPI (response) {
     })
     document.querySelector('body').innerHTML += '<p class="error_message text-danger">' + messageToTestTaker +'</p>'
 }
-
-
-// testObjSuccess = {
-//     "success": true,
-//     "message": "Successfully saved answers.",
-//     "data": []
-// }
-//
-//
-// testObjFail = {
-//     "success": false,
-//     "message": "Missing post data, required keys: answers, uid, score, time.",
-//     "data": []
-// }
-//
-// let response = testObjFail
 
 

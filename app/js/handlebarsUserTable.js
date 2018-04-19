@@ -15,6 +15,7 @@ function fillUserTable(HBTemplate) {
             user_list.innerHTML = ""
 
             if (result.success) {
+                //turns array of result.data into an object for use by handlebars template
                 result.data = {data: result.data}
 
                 let html = template(result.data)
@@ -24,7 +25,15 @@ function fillUserTable(HBTemplate) {
                 console.log(EditButtonArray)
 
                 EditButtonArray.forEach(function (element){
-                    element.addEventListener('click',  postStuff)
+                    element.addEventListener('click',  function(){
+                        let updatedUserInformationObject = {
+                            name: "",
+                            email: "",
+                            id: ""
+                        }
+                        console.log(updatedUserInformationObject)
+                        postEditedInformation(updatedUserInformationObject)
+                    })
                 })
 
             } else {
@@ -33,12 +42,24 @@ function fillUserTable(HBTemplate) {
         })
 }
 
-async function postStuff(){
+async function postEditedInformation(updatedUserInformationObject){
+
+    let newName = document.getElementById("userDetails").value
+    console.log(newName)
+
+    updatedUserInformationObject.name = document.getElementById("userDetails").value
+
     let userUpdateResponse = await fetch("http://localhost:8080/user/edit",
         {
             method: 'post',
-            body: jsonToFormData({'email':'emailme@mikeoram.co.uk', 'name':'Name', 'id':'1'})
-        })
+            body: jsonToFormData({
+                name: "",
+                email: "",
+                id: ""
+            })
+        }).then(function(data) {
+            return data.json()
+    })
     return userUpdateResponse.success
 }
 

@@ -60,7 +60,7 @@ function getUserAnswers(questionAmount) {
     return answers
 }
 
-document.querySelector('#finish').addEventListener('click', function(e) {
+document.querySelector('#finish').addEventListener('click',  function(e) {
     e.preventDefault()
     const userAnswers= getUserAnswers(questionAmount)
 
@@ -74,10 +74,8 @@ document.querySelector('#finish').addEventListener('click', function(e) {
             let answered = getAnswered(userAnswers, questionAmount)
 
             displayResult(result.score, percentResult, answered)
-            sendUserResults(result)
+            handleResponseFromAPI(sendUserResults(result))
 
-            let messageToUser = handleResponseFromAPI(response)
-            document.querySelector('body').innerHTML += '<p class="error_message text-danger">' + messageToUser +'</p>'
         } else {
             let body = document.querySelector('body')
             let html = body.innerHTML

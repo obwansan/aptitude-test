@@ -1,6 +1,10 @@
+{{#each data}}
 <div class="entry">
     <div class="user_item">
-        <p class="name">Name: {{name}}</p>
-        <p class="email">Email: {{email}}</p>
+        <input id="userDetails{{id}}" type="text" name="name" value="{{name}}">
+        <input id="emai{{id}}" type="text" name="email" value="{{email}}">
+        <button class="editButton" id="edit{{id}}">Edit</button>
+        <button class="deleteButton" id="delete{{id}}">Delete</button>
     </div>
 </div>
+{{/each}}

@@ -22,10 +22,12 @@ function fillUserTable(HBTemplate) {
                 user_list.innerHTML += html
 
 
+                deleteUserHanlder()
+
             } else {
                 user_list.innerHTML = "Please contact Admin, user list unavailable"
             }
-        })
+    })
 }
 
 async function postEditedInformation(){

@@ -1,24 +1,4 @@
 
-//add event listener on submit where id on admin page is id on API
-
-
-let test = document.querySelectorAll(".editButton")
-console.log(test)
-
-document.querySelectorAll('edit').addEventListener('click',  function(e){
-    e.preventDefault()
-    let userUpdateResponse = fetch("http://localhost:8080/user/edit",
-        {
-            method: 'post',
-            body: {"email":"emailme@mikeoram.co.uk", "name": "Mike Mike Oram", "id":"1"}
-        })
-    console.log(userUpdateResponse)
-    return userUpdateResponse
-})
-
-
-
-
 function testFunction() {
     console.log('hello')
     let users = fetch("http://localhost:8080/user", {method: 'get'})
@@ -28,9 +8,7 @@ function testFunction() {
 }
 
 
-
 //create 'details' form
-
 //function that populates current details of specific user
 
 function userFunction() {
@@ -41,7 +19,6 @@ function userFunction() {
         })
 }
 
-
 /**
  * combines user info (name and email) and result scores into the a new object
  *
@@ -49,23 +26,11 @@ function userFunction() {
  */
 async function userDetailsToEdit (uID) {
     let users = await getNameAndEmail()
-
     let userX = uID
-
     let uName = users[userX].name
     let uEmail = users[userX].email
-
-    console.log([uName, uEmail])
 
     return [uName, uEmail]
 }
 
 userDetailsToEdit(0)
-
-//new event listener on submit of details form
-
-
-
-//on submit edit form, add edit to API function
-
-//

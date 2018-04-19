@@ -17,17 +17,29 @@ function fillUserTable(HBTemplate) {
             if (result.success) {
                 result.data = {data: result.data}
 
-                // result.data.forEach(function(userData) {
-                    let html = template(result.data)
-                    user_list.innerHTML += html
+                let html = template(result.data)
+                user_list.innerHTML += html
 
-                // })
+                EditButtonArray = document.querySelectorAll(".editButton")
+                console.log(EditButtonArray)
 
+                EditButtonArray.forEach(function (element){
+                    element.addEventListener('click',  postStuff)
+                })
 
             } else {
                 user_list.innerHTML = "Please contact Admin, user list unavailable"
             }
         })
+}
+
+async function postStuff(){
+    let userUpdateResponse = await fetch("http://localhost:8080/user/edit",
+        {
+            method: 'post',
+            body: jsonToFormData({'email':'emailme@mikeoram.co.uk', 'name':'Name', 'id':'1'})
+        })
+    return userUpdateResponse.success
 }
 
 /**

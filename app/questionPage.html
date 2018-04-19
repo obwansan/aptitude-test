@@ -17,12 +17,14 @@
     <link href="css/questionPage.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" href="css/resultPage.css">
     <script src="js/handlebars-v4.0.11.js"></script>
+    <script src="js/aptitudeTestHelpers.js" async></script>
     <script src="js/ajaxHandlebarsTemplate.js" defer></script>
     <script src="js/questions.js" defer></script>
     <script src="js/question_desc.js" defer></script>
     <script src="js/questionNav.js" defer></script>
     <script src="js/timer.js" defer></script>
     <script src="js/checkAnswers.js" defer></script>
+    <script src="js/sendResults.js" defer></script>
 </head>
 <body>
 <!--question number and time -->
@@ -56,6 +58,8 @@
 </div>
 <div id="result_page">
     <div class="container">
+        <div class="userMessage">
+        </div>
         <div class="result_card">
             <div class="greetings">
                 <p>Your score</p>

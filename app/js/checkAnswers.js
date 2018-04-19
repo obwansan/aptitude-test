@@ -19,10 +19,10 @@ async function checkAnswers(userAnswers) {
             }
         })
         let result = {
-            uid: getCookie('uid'),
+            uid: parseInt(getCookie('uid'), 10),
             answers: userAnswers,
             score: userScore,
-            time: getTimeForApi()
+            time: parseFloat(getTimeForApi()),
         }
         return result
     }
@@ -65,17 +65,20 @@ document.querySelector('#finish').addEventListener('click', function(e) {
     const userAnswers= getUserAnswers(questionAmount)
 
     checkAnswers(userAnswers).then(function(result) {
+        let percentResult
+        let answered
+
         if (result.score || result.score === 0) {
             document.querySelector('#question_page').style.display = 'none'
             document.querySelector('#result_page').style.display = 'block'
-            let percentResult = getPercentResult(result.score, questionAmount)
-            let answered = getAnswered(userAnswers, questionAmount)
+            percentResult = getPercentResult(result.score, questionAmount)
+            answered = getAnswered(userAnswers, questionAmount)
             displayResult(result.score, percentResult, answered)
+            handleResponseFromAPI(sendUserResults(result))
         } else {
             let body = document.querySelector('body')
             let html = body.innerHTML
             html += '<p class="error_message text-danger">Please contact admin. Answers cannot be checked at present.</p>'
-            html += '<p class="error_message text-danger">' + result.message + '</p>'
             body.innerHTML = html
         }
     })

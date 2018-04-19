@@ -56,6 +56,7 @@ if (document.querySelector('#logInForm')) {
                     if (idData.success) {
                         email.insertAdjacentHTML('afterend', '<p>The test cannot be done twice</p>')
                     } else {
+                        document.cookie = "uid=" + user.data.id
                         document.cookie = "userEmail=" + user.data.email
                         redirectUser(user.data)
                     }

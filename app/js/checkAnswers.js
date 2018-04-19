@@ -60,7 +60,7 @@ function getUserAnswers(questionAmount) {
     return answers
 }
 
-document.querySelector('#finish').addEventListener('click',  function(e) {
+document.querySelector('#finish').addEventListener('click', function(e) {
     e.preventDefault()
     const userAnswers= getUserAnswers(questionAmount)
 

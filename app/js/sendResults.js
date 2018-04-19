@@ -15,11 +15,9 @@ function sendUserResults(userResults) {
             return response.json()
         })
     .then(function(data) {
-            console.log(data.message)
             return data
         })
     .catch(function(err) {
-            console.log(`Looks like there was an error: ${err}`)
     })
 
     return resultsResponse

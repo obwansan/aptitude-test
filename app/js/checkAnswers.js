@@ -75,7 +75,6 @@ document.querySelector('#finish').addEventListener('click', function(e) {
             answered = getAnswered(userAnswers, questionAmount)
             displayResult(result.score, percentResult, answered)
             handleResponseFromAPI(sendUserResults(result))
-
         } else {
             let body = document.querySelector('body')
             let html = body.innerHTML

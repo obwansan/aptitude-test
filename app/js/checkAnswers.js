@@ -63,19 +63,25 @@ function getUserAnswers(questionAmount) {
 document.querySelector('#finish').addEventListener('click', function(e) {
     e.preventDefault()
     const userAnswers= getUserAnswers(questionAmount)
+
     checkAnswers(userAnswers).then(function(result) {
+
         if (result.score || result.score === 0) {
             document.querySelector('#question_page').style.display = 'none'
             document.querySelector('#result_page').style.display = 'block'
+
             let percentResult = getPercentResult(result.score, questionAmount)
             let answered = getAnswered(userAnswers, questionAmount)
+
             displayResult(result.score, percentResult, answered)
             sendUserResults(result)
+
+            let messageToUser = handleResponseFromAPI(response)
+            document.querySelector('body').innerHTML += '<p class="error_message text-danger">' + messageToUser +'</p>'
         } else {
             let body = document.querySelector('body')
             let html = body.innerHTML
             html += '<p class="error_message text-danger">Please contact admin. Answers cannot be checked at present.</p>'
-            html += '<p class="error_message text-danger">' + result.message + '</p>'
             body.innerHTML = html
         }
     })

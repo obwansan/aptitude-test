@@ -36,10 +36,12 @@ function fillUserTable(HBTemplate) {
                     })
                 })
 
+                deleteUserHanlder()
+
             } else {
                 user_list.innerHTML = "Please contact Admin, user list unavailable"
             }
-        })
+    })
 }
 
 async function postEditedInformation(updatedUserInformationObject){

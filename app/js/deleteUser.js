@@ -19,5 +19,9 @@ function deleteUser() {
 //You'll need this for testing. Should .
 // setTimeout(() => {deleteUser()},1500)
 
-let buttons = document.querySelectorAll('.deleteButton')
-buttons.addEventListener('click', deleteUser)
+function deleteUserHanlder() {
+    let buttons = document.querySelectorAll('.deleteButton')
+    buttons.forEach((x) => {
+        x.addEventListener('click', deleteUser)
+    })
+}

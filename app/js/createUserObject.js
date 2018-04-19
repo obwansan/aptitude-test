@@ -40,6 +40,7 @@ async function getNameAndEmail() {
     return usersArray
 }
 
+
 /**
  * combines user info (name and email) and result scores into the a new object
  *
@@ -68,3 +69,4 @@ async function createUsersObject () {
 
     return {success: true, data: userDisplayArray}
 }
+

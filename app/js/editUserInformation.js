@@ -1,9 +1,11 @@
 
 //add event listener on submit where id on admin page is id on API
 
-console.log(document.querySelectorAll('edit'))
 
-document.querySelectorAll('#edit').addEventListener('click',  function(e){
+let test = document.querySelectorAll(".editButton")
+console.log(test)
+
+document.querySelectorAll('edit').addEventListener('click',  function(e){
     e.preventDefault()
     let userUpdateResponse = fetch("http://localhost:8080/user/edit",
         {
@@ -13,6 +15,8 @@ document.querySelectorAll('#edit').addEventListener('click',  function(e){
     console.log(userUpdateResponse)
     return userUpdateResponse
 })
+
+
 
 
 function testFunction() {
@@ -37,7 +41,6 @@ function userFunction() {
         })
 }
 
-// console.log(users)
 
 /**
  * combines user info (name and email) and result scores into the a new object

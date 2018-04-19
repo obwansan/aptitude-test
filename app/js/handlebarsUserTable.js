@@ -15,12 +15,15 @@ function fillUserTable(HBTemplate) {
             user_list.innerHTML = ""
 
             if (result.success) {
-                result.data.forEach(function(userData) {
-                    let html = template(userData)
+                result.data = {data: result.data}
+
+                // result.data.forEach(function(userData) {
+                    let html = template(result.data)
                     user_list.innerHTML += html
 
+                // })
 
-                })
+
             } else {
                 user_list.innerHTML = "Please contact Admin, user list unavailable"
             }

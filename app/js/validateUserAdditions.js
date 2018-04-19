@@ -21,23 +21,6 @@ async function saveNewUser(user) {
 }
 
 /**
- * convert a JSON object into form data suitable for passing to an API built for form data
- *
- * @param jsonInput the JSON object to be converted.
- *
- * @returns a form data object.
- */
-function jsonToFormData(jsonInput) {
-    let formData = new FormData()
-    
-    Object.keys(jsonInput).forEach((key) => {
-        formData.append(key, jsonInput[key])
-    })
-
-    return formData
-}
-
-/**
  * performs an AJAX request to retrieve existing users that are not deleted.
  *
  * @return  an array of user data

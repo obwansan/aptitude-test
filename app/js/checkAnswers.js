@@ -19,15 +19,13 @@ async function checkAnswers(userAnswers) {
             }
         })
         let result = {
-            uid: getCookie('uid'),
+            uid: parseInt(getCookie('uid'), 10),
             answers: userAnswers,
             score: userScore,
-            time: getTimeForApi()
+            time: parseFloat(getTimeForApi()),
         }
-        console.log(result)
         return result
     }
-    console.log(answers)
     return answers
 }
 
@@ -62,10 +60,32 @@ function getUserAnswers(questionAmount) {
     return answers
 }
 
+// function sendUserResults(userResults) {
+//     let userResultsForm = jsonToFormData(userResults)
+//     fetch("http://localhost:8080/answer", {
+//         method: 'post',
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//         mode: 'no-cors',
+//         body: userResultsForm
+//     })
+//     .then(function(response) {
+//             console.log(response)
+//             return response.json()
+//     })
+//     .then(function(data) {
+//         console.log(data)
+//             console.log(`some great thing: ${data}`)
+//     })
+//     .catch(function(err) {
+//             console.log(`Looks like there was an error: ${err}`)
+//     })
+// }
+
 document.querySelector('#finish').addEventListener('click', function(e) {
     e.preventDefault()
     const userAnswers= getUserAnswers(questionAmount)
-
     checkAnswers(userAnswers).then(function(result) {
         if (result.score || result.score === 0) {
             document.querySelector('#question_page').style.display = 'none'
@@ -73,6 +93,7 @@ document.querySelector('#finish').addEventListener('click', function(e) {
             let percentResult = getPercentResult(result.score, questionAmount)
             let answered = getAnswered(userAnswers, questionAmount)
             displayResult(result.score, percentResult, answered)
+            sendUserResults(result)
         } else {
             let body = document.querySelector('body')
             let html = body.innerHTML

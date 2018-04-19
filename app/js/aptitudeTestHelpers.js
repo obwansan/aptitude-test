@@ -8,9 +8,9 @@
 function jsonToFormData(jsonInput) {
     let formData = new FormData()
 
-    Object.keys(jsonInput).forEach((key) => {
+    Object.keys(jsonInput).forEach(function(key) {
         let value = jsonInput[key]
-        if (typeof  value  === 'object') {
+        if  (typeof  value  === 'object') {
             jsonInput[key] = JSON.stringify(value)
         }
         formData.append(key, jsonInput[key])

@@ -18,6 +18,8 @@ function fillUserTable(HBTemplate) {
                 result.data.forEach(function(userData) {
                     let html = template(userData)
                     user_list.innerHTML += html
+
+
                 })
             } else {
                 user_list.innerHTML = "Please contact Admin, user list unavailable"

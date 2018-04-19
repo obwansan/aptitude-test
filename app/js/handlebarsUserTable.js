@@ -21,20 +21,6 @@ function fillUserTable(HBTemplate) {
                 let html = template(result.data)
                 user_list.innerHTML += html
 
-                EditButtonArray = document.querySelectorAll(".editButton")
-                console.log(EditButtonArray)
-
-                EditButtonArray.forEach(function (element){
-                    element.addEventListener('click',  function(){
-                        let updatedUserInformationObject = {
-                            name: "",
-                            email: "",
-                            id: ""
-                        }
-                        console.log(updatedUserInformationObject)
-                        postEditedInformation(updatedUserInformationObject)
-                    })
-                })
 
             } else {
                 user_list.innerHTML = "Please contact Admin, user list unavailable"
@@ -42,20 +28,20 @@ function fillUserTable(HBTemplate) {
         })
 }
 
-async function postEditedInformation(updatedUserInformationObject){
-
-    let newName = document.getElementById("userDetails").value
-    console.log(newName)
-
-    updatedUserInformationObject.name = document.getElementById("userDetails").value
+async function postEditedInformation(){
+    let foo = {
+        name: 'Ben',
+        email: 'ben@email.com',
+        id: 2,
+    }
 
     let userUpdateResponse = await fetch("http://localhost:8080/user/edit",
         {
             method: 'post',
             body: jsonToFormData({
-                name: "",
-                email: "",
-                id: ""
+                name: foo.name,
+                email: foo.email,
+                id: foo.id
             })
         }).then(function(data) {
             return data.json()
@@ -63,6 +49,18 @@ async function postEditedInformation(updatedUserInformationObject){
     return userUpdateResponse.success
 }
 
+setTimeout(()=> {
+    postEditedInformation()
+}, 3000)
+
+function editUserHandler() {
+    let buttons = document.querySelector('.editButton')
+    buttons.forEach((x) => {
+        x.addEventListener('click', (e) => {
+            console.log(e.target)
+        })
+    })
+}
 /**
  * get the handlebars template and use this to display the users
  */

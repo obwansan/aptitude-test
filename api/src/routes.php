@@ -227,7 +227,10 @@ $app->post('/answer', function ($request, $response, $args) {
     if (
         empty($postData['answers']) ||
         empty($postData['uid']) ||
-        empty($postData['score']) ||
+        !(
+            isset($postData['score']) && // allows 0 score
+            is_numeric($postData['score'])
+        ) ||
         empty($postData['time'])
     ) {
         $data['message'] = 'Missing post data, required keys: answers, uid, score, time.';

@@ -60,29 +60,6 @@ function getUserAnswers(questionAmount) {
     return answers
 }
 
-// function sendUserResults(userResults) {
-//     let userResultsForm = jsonToFormData(userResults)
-//     fetch("http://localhost:8080/answer", {
-//         method: 'post',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         mode: 'no-cors',
-//         body: userResultsForm
-//     })
-//     .then(function(response) {
-//             console.log(response)
-//             return response.json()
-//     })
-//     .then(function(data) {
-//         console.log(data)
-//             console.log(`some great thing: ${data}`)
-//     })
-//     .catch(function(err) {
-//             console.log(`Looks like there was an error: ${err}`)
-//     })
-// }
-
 document.querySelector('#finish').addEventListener('click', function(e) {
     e.preventDefault()
     const userAnswers= getUserAnswers(questionAmount)

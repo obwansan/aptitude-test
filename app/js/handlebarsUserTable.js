@@ -20,30 +20,23 @@ function fillUserTable(HBTemplate) {
 
                 let html = template(result.data)
                 user_list.innerHTML += html
-
-
-                deleteUserHanlder()
+                editUserHandler()
 
             } else {
                 user_list.innerHTML = "Please contact Admin, user list unavailable"
             }
-    })
+        })
 }
 
-async function postEditedInformation(){
-    let foo = {
-        name: 'Ben',
-        email: 'ben@email.com',
-        id: 2,
-    }
-
+async function postEditedInformation(object){
+    let obj = object
     let userUpdateResponse = await fetch("http://localhost:8080/user/edit",
         {
             method: 'post',
             body: jsonToFormData({
-                name: foo.name,
-                email: foo.email,
-                id: foo.id
+                name: obj.name,
+                email: obj.email,
+                id: obj.id
             })
         }).then(function(data) {
             return data.json()
@@ -51,15 +44,31 @@ async function postEditedInformation(){
     return userUpdateResponse.success
 }
 
-setTimeout(()=> {
-    postEditedInformation()
-}, 3000)
 
 function editUserHandler() {
-    let buttons = document.querySelector('.editButton')
-    buttons.forEach((x) => {
-        x.addEventListener('click', (e) => {
-            console.log(e.target)
+    let buttons = document.querySelectorAll('.editButton')
+  
+    buttons.forEach(function(x) {
+        x.addEventListener('click', function(e) {
+            let id = e.target.id[e.target.id.length - 1]
+            let targetSiblings = e.target.parentNode.childNodes
+            let ary = []
+            let obj
+
+            ary.push(id)
+            targetSiblings.forEach(function(el) {
+                if (el.type === 'text') {
+                    ary.push(el.value)
+                }
+            })
+            
+            obj = {
+                id: ary[0],
+                name: ary[1],
+                email: ary[2]
+            }
+            console.log(obj)
+            postEditedInformation(obj)
         })
     })
 }
